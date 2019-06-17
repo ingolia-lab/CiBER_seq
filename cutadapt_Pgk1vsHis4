@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#HIS4='GAGATCCAGTCACTCGGaactgTTAC'
+#PGK1='GAGATCCAGTCACTCGGtcgatTTAC'
+
+HIS4='GAGATCCAGTCACTCGGaactgTTAC$'
+PGK1='GAGATCCAGTCACTCGGtcgatTTAC$'
+
+#cutadapt -a his4="${HIS4}" -a pgk1="${PGK1}" \
+#-o trimmed-{name}$k$j$i.fastq $k$j$i.fastq
+
+TURB="R L"
+TYPE="IVT_ RNA_"
+SAMPLES="3AT_ Post Pre"
+
+for i in ${TURB}
+do
+        for j in ${SAMPLES}
+        do
+                for k in ${TYPE}
+                do
+                        cutadapt -a his4="${HIS4}" -a pgk1="${PGK1}" \
+                        -o trimmed-{name}$k$j$i.fastq $k$j$i.fastq
+                done
+        done
+done
