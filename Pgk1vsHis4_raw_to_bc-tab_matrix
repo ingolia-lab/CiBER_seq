@@ -1,5 +1,11 @@
 #!/bin/bash
 
+cd ~
+mkdir His4_Pgk1
+cd His4_Pgk1/
+#download seq1 folder, download more_seq folder
+cd ~/His4_Pgk1/seq1/
+
 #There are a total of 8 samples, including RNA and DNA measure measurements (TYPE), 
 #pre and post gRNA induction (SAMPLES), and two turbidostat replicates (TURB)
 TURB="R L"
@@ -67,3 +73,75 @@ python bc-tabulate.py -o all_pgk1_counts.txt pgk1IVT_PreLtrimmed-count.txt \
 pgk1IVT_PreRtrimmed-count.txt pgk1IVT_PostLtrimmed-count.txt pgk1IVT_PostRtrimmed-count.txt \
 pgk1RNA_PreLtrimmed-count.txt pgk1RNA_PreRtrimmed-count.txt pgk1RNA_PostLtrimmed-count.txt \
 pgk1RNA_PostRtrimmed-count.txt \
+
+
+cd ~/His4_Pgk1/more_seq/
+
+#There are a total of 8 samples, including RNA and DNA measure measurements (TYPE), 
+#pre and post gRNA induction (SAMPLES), and two turbidostat replicates (TURB)
+TURB="R L"
+TYPE="IVT_ RNA_"
+SAMPLES="Post Pre"
+
+#gunzip all 8 .gz files and rename
+for i in ${TURB}
+do
+        for j in ${SAMPLES}
+        do
+                for k in ${TYPE}
+                do
+                        gunzip $k$j$i*
+                        mv $k$j$i* $k$j$i.fastq
+                done
+        done
+done
+
+#5 nucleotide identifier is shown in lowercase. The rest is constant region adapter that is trimmed off using cutadapt
+HIS4='GAGATCCAGTCACTCGGaactgTTAC$'
+PGK1='GAGATCCAGTCACTCGGtcgatTTAC$'
+
+for i in ${TURB}
+do
+        for j in ${SAMPLES}
+        do
+                for k in ${TYPE}
+                do
+                        cutadapt -a his4="${HIS4}" -a pgk1="${PGK1}" \
+                        -o trimmed-{name}$k$j$i.fastq $k$j$i.fastq
+                done
+        done
+done
+
+#The unique barcodes for each generated file are counted using bc-count.py
+TRIM="trimmed-"
+PROM="his4 pgk1"
+COUNT="count"
+TURB="R L"
+TYPE="IVT_ RNA_"
+SAMPLES="Post Pre"
+
+for i in ${TURB}
+do
+        for j in ${SAMPLES}
+        do
+                for k in ${TYPE}
+                do
+                        for l in ${PROM}
+                        do
+                                python bc-count.py -i ${TRIM}$l$k$j$i.fastq -o $l$k$j$i${TRIM}${COUNT}.txt
+                        done
+                done
+        done
+done
+
+#aggregates all the bc-count files and tabulates them into one matrix "all_his4_counts.txt" or "all_pgk1_counts.txt"
+python bc-tabulate.py -o all_his4_counts2.txt his4IVT_PreLtrimmed-count.txt \
+his4IVT_PreRtrimmed-count.txt his4IVT_PostLtrimmed-count.txt his4IVT_PostRtrimmed-count.txt \
+his4RNA_PreLtrimmed-count.txt his4RNA_PreRtrimmed-count.txt his4RNA_PostLtrimmed-count.txt \
+his4RNA_PostRtrimmed-count.txt \
+
+python bc-tabulate.py -o all_pgk1_counts2.txt pgk1IVT_PreLtrimmed-count.txt \
+pgk1IVT_PreRtrimmed-count.txt pgk1IVT_PostLtrimmed-count.txt pgk1IVT_PostRtrimmed-count.txt \
+pgk1RNA_PreLtrimmed-count.txt pgk1RNA_PreRtrimmed-count.txt pgk1RNA_PostLtrimmed-count.txt \
+pgk1RNA_PostRtrimmed-count.txt \
+
