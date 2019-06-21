@@ -1,13 +1,20 @@
 #start with trimmed and tabulated datasets "all_his4_counts.txt", "all_his4_counts2.txt", 
 # "all_pgk1_counts.txt", and "all_pgk1_counts2.txt"
 
-
 #loading packages and libraries
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install("mpra", version = "3.8")
-
 library(mpra)
+
+install.packages("dplyr")
+library(dplyr)
+
+#merge sequencing from the two lanes
+#add the barcode reads together
+all_pooled_pgk1 <- merge(all_pgk1_counts.txt, all_pgk1_counts2.txt, by="barcode")
+all_pooled_pgk1_32 <- filter(all_pooled_pgk1, all_pooled_pgk1$
+all_pooled_pgk1_32 <- merge(all_pooled_pgk1_32, grna.assign.barcode.grna.good, by="barcode"
 
 #creating dataframes that mpralm can use
 #all_pooled_pgk1_32 is filtering the pooled dataset with 32 read cut-off for both pre IVT samples
