@@ -1,12 +1,14 @@
 #!/bin/bash -x
 
-#________sra_____test__________
-if [[ "$#" != "1" ]]; then
-    echo "Usage: $0 <DATA-DIRECTORY>"
-    exit 1
-fi
+#________code from NTI__________
+#if [[ "$#" != "1" ]]; then
+#    echo "Usage: $0 <DATA-DIRECTORY>"
+#    exit 1
+#fi
 
-export DATADIR="$1"
+#export DATADIR="$1"
+
+export DATADIR="."
 
 if [[ ! -d "${DATADIR}" ]]; then
     echo "Data directory \"${DATADIR}\" does not exit"
@@ -16,7 +18,8 @@ fi
 # Tab-delimited table of SRR<TAB>name
 SAMPLETABLE="samples.txt"
 
-ADAPTER='GCGATAAAAGCGTTGGGATCAGATCGGAAGAGCAC'
+HIS4='GAGATCCAGTCACTCGGaactgTTAC$'
+PGK1='GAGATCCAGTCACTCGGtcgatTTAC$'
 
 export COUNTDIR="${DATADIR}/counting"
 mkdir -p "${COUNTDIR}"
@@ -30,7 +33,7 @@ do
     if [[ ! -e ${COUNTTRIM} ]];
     then
         fastq-dump -Z ${SRR} \
-	  | cutadapt -a ${ADAPTER} \
+	  | cutadapt -a his4="${HIS4}" -a pgk1="${PGK1}" \
 		   -o ${COUNTTRIM} \
 		   --discard-untrimmed \
 		   - \
@@ -48,7 +51,7 @@ do
 
     if [[ ! -e ${COUNT} ]];
     then
-        (cd ../cyh2 && cargo run --bin bc-count "${TRIMFQ}" "${COUNT}") &
+        (cd .. && python bc-count.py -i ${TRIMFQ} -o ${COUNT}) &
 
         sleep 2
     else
@@ -66,8 +69,7 @@ fi
 
 R --no-save < analysis-counts.R
 
-
-#_________sra___test____________
+#_________end of code from NTI____________
 
 #There are a total of 8 samples, including RNA and DNA measure measurements (TYPE), 
 #pre and post gRNA induction (SAMPLES), and two turbidostat replicates (TURB)
