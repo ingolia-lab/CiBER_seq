@@ -1,4 +1,4 @@
-# CiBER_seq
+# CiBER_seq  (old description, will update soon)
 Code to make all the datasets and analysis for Amino-acid starvation CiBER_seq project
 
 This repository contains code to generate the following datasets:
