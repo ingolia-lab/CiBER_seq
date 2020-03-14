@@ -1,0 +1,23 @@
+SGD:S000003060	Essential protein with distinct roles in two nuclear pore subcomplexes		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR23198	gene		PMID:8195299	20120611
+SGD:S000003060	Essential protein with distinct roles in two nuclear pore subcomplexes		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR23198	gene		PMID:9001245	20110523
+SGD:S000003060	Essential protein with distinct roles in two nuclear pore subcomplexes		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR23198	gene		PMID:9133678	20110523
+SGD:S000003060	Essential protein with distinct roles in two nuclear pore subcomplexes		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR23198	gene		PMID:9305650	20110523
+SGD:S000002274	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13003	gene		PMID:8565072	20120607
+SGD:S000001540	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21286	gene		PMID:22331846	20120607
+SGD:S000001540	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21286	gene		PMID:8557736	20120607
+SGD:S000001540	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21286	gene		PMID:8557737	20120607
+SGD:S000001540	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21286	gene		PMID:8565072	20120607
+SGD:S000001540	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21286	gene		PMID:9725905	20110504
+SGD:S000000909	RNA export factor associated with the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR10971	gene		PMID:9725905	20110504
+SGD:S000001790	Subunit of Nup84p subcomplex of nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13405	gene		PMID:22331846	20120607
+SGD:S000001790	Subunit of Nup84p subcomplex of nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13405	gene		PMID:7813444	20120607
+SGD:S000001790	Subunit of Nup84p subcomplex of nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13405	gene		PMID:7862658	20120607
+SGD:S000001790	Subunit of Nup84p subcomplex of nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13405	gene		PMID:9725905	20110504
+SGD:S000001790	Subunit of Nup84p subcomplex of nuclear pore complex (NPC)		GO:0031081		GO_Central	NCBITaxon:559292	IBA	PANTHER:PTN000334066|SGD:S000001790	PANTHER:PTHR13405	gene		PMID:21873635	20170228
+SGD:S000001377	FG-nucleoporin component of central core of the nuclear pore complex		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21243	gene		PMID:7744966	20110504
+SGD:S000001377	FG-nucleoporin component of central core of the nuclear pore complex		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR21243	gene		PMID:9359887	20110504
+SGD:S000006026	Protein of unknown function that influences nuclear pore distribution		GO:0031081		SGD	NCBITaxon:559292	IGI	SGD:S000001790	PANTHER:PTHR14445	gene		PMID:18327588	20110321
+SGD:S000003946	Transmembrane nucleoporin		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR12703	gene		PMID:20498018	20180308
+SGD:S000003803	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13373	gene		PMID:8565072	20120607
+SGD:S000003803	Subunit of the Nup84p subcomplex of the nuclear pore complex (NPC)		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR13373	gene		PMID:8816998	20120611
+SGD:S000004198	Structural component of 3 complexes		GO:0031081		SGD	NCBITaxon:559292	IMP		PANTHER:PTHR11024	gene		PMID:10747086	20120611
