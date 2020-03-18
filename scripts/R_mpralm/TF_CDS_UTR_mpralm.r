@@ -17,7 +17,7 @@ sgd <- read.delim("SGD_features.tab", header=FALSE, quote="",
 
 options(stringsAsFactors=FALSE)
 if (!exists("grna.assign.barcode.grna.good")) {
-  grna.assign.barcode.grna.good <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/PE_bc_gRNA_assignment/grna-assign-barcode-grna-good.txt",
+  grna.assign.barcode.grna.good <- read.delim("~/CiBER_seq_package/all_raw_fastq/PE_bc_gRNA_assignment/grna-assign-barcode-grna-good.txt",
                                 stringsAsFactors=FALSE)
 }
 
@@ -33,13 +33,13 @@ if (!exists("guide.good.targets")) {
 # Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
 options(stringsAsFactors=FALSE)
 if (!exists("TF_CDS")) {
-  TF_CDS <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/GCN4_CDS_UTR/all_TF_CDS_counts.txt",
+  TF_CDS <- read.delim("~/CiBER_seq_package/all_raw_fastq/GCN4_CDS_UTR/all_TF_CDS_counts.txt",
                                 stringsAsFactors=FALSE)
 }
 
 options(stringsAsFactors=FALSE)
 if (!exists("TF_UTR")) {
-  TF_UTR <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/GCN4_CDS_UTR/all_TF_UTR_counts.txt",
+  TF_UTR <- read.delim("~/CiBER_seq_package/all_raw_fastq/GCN4_CDS_UTR/all_TF_UTR_counts.txt",
                                 stringsAsFactors=FALSE)
 }
 
@@ -182,6 +182,6 @@ utr_sum_mpralm$desc <- sgd[match(utr_sum_mpralm$Yorf1, sgd$name), "desc"]
 head(utr_sum_mpralm)
 
 #saving mpralm analysis
-write.table(cds_sum_mpralm, "~/CiBER_seq_package/all_raw_fasta_gz/GCN4_CDS_UTR/cds_sum_mpralm.txt", sep="\t")
-write.table(utr_sum_mpralm, "~/CiBER_seq_package/all_raw_fasta_gz/GCN4_CDS_UTR/utr_sum_mpralm.txt", sep="\t")
+write.table(cds_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/GCN4_CDS_UTR/cds_sum_mpralm.txt", sep="\t")
+write.table(utr_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/GCN4_CDS_UTR/utr_sum_mpralm.txt", sep="\t")
 

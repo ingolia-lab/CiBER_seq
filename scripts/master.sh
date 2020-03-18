@@ -2,7 +2,7 @@
 
 #From the PE sequencing data, make the bc-gRNA assignments (also includes empty barcodes for FDR calculations)
 #Download PE sequencing .gz files from sra
-PEDIR='~/CiBER_seq_package/all_raw_fasta_gz/PE_bc_gRNA_assignment/'
+PEDIR='~/CiBER_seq_package/all_raw_fastq/PE_bc_gRNA_assignment/'
 if [[ ! -e "${PEDIR}/grna-assign-barcode-grna-good.txt" ]]
 then
     ./gRNA_assign_plus_empty.sh
@@ -10,7 +10,7 @@ fi
 
 #Analysis for His4/Pgk1 3AT dataset
 #Download from sra and place .gz files into a folder named his4_3AT
-DATADIR='~/CiBER_seq_package/all_raw_fasta_gz/'
+DATADIR='~/CiBER_seq_package/all_raw_fastq/'
 
 if [[ ! -e "${DATADIR}/HIS4_PGK1_3AT/his4_3AT_sum_mpralm.txt" ]]
 then

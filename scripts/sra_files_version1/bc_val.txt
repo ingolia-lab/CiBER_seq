@@ -1,2 +1,0 @@
-exp_bcode_dup1_S5_L001_R1_001.fastq.gz SRR10357609
-exp_bcode_dup2_S6_L001_R1_001.fastq.gz SRR10357608

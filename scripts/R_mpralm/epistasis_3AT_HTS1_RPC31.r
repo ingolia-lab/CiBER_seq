@@ -17,7 +17,7 @@ sgd <- read.delim("SGD_features.tab", header=FALSE, quote="",
 
 options(stringsAsFactors=FALSE)
 if (!exists("grna.assign.barcode.grna.good")) {
-  grna.assign.barcode.grna.good <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/PE_bc_gRNA_assignment/grna-assign-barcode-grna-good.txt",
+  grna.assign.barcode.grna.good <- read.delim("~/CiBER_seq_package/all_raw_fastq/PE_bc_gRNA_assignment/grna-assign-barcode-grna-good.txt",
                                               stringsAsFactors=FALSE)
 }
 
@@ -30,21 +30,21 @@ if (!exists("guide.good.targets")) {
 # Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
 options(stringsAsFactors=FALSE)
 if (!exists("his4_seq1")) {
-  his4_seq1 <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/HIS4_PGK1_3AT/all_his4_seq1_counts.txt",
+  his4_seq1 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_3AT/all_his4_seq1_counts.txt",
                           stringsAsFactors=FALSE)
 }
 
 # Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
 options(stringsAsFactors=FALSE)
 if (!exists("his4_moreseq")) {
-  his4_moreseq <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/HIS4_PGK1_pooled/more_seq/all_his4_moreseq_counts.txt",
+  his4_moreseq <- read.delim("~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_pooled/more_seq/all_his4_moreseq_counts.txt",
                              stringsAsFactors=FALSE)
 }
 
 # Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
 options(stringsAsFactors=FALSE)
 if (!exists("HTS1_RPC31_rep1")) {
-  HTS1_RPC31 <- read.delim("~/CiBER_seq_package/all_raw_fasta_gz/HTS1_RPC31/all_HTS1_RPC31_counts.txt",
+  HTS1_RPC31 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HTS1_RPC31/all_HTS1_RPC31_counts.txt",
                            stringsAsFactors=FALSE)
 }
 
@@ -276,8 +276,8 @@ head(his4postvRPC31post_sum_mpralm)
 
 
 #saving mpralm analysis
-write.table(his4postvHTS1post_sum_mpralm, "~/CiBER_seq_package/all_raw_fasta_gz/epistasis_3AT_HTS1_RPC31/his4postvHTS1post_sum_mpralm.txt", sep="\t")
-write.table(his4postvRPC31post_sum_mpralm, "~/CiBER_seq_package/all_raw_fasta_gz/epistasis_3AT_HTS1_RPC31/his4postvRPC31post_sum_mpralm.txt", sep="\t")
+write.table(his4postvHTS1post_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/epistasis_3AT_HTS1_RPC31/his4postvHTS1post_sum_mpralm.txt", sep="\t")
+write.table(his4postvRPC31post_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/epistasis_3AT_HTS1_RPC31/his4postvRPC31post_sum_mpralm.txt", sep="\t")
 
 
 
