@@ -1,0 +1,55 @@
+[package]
+name = "barcode-assign"
+version = "0.2.0"
+authors = ["Nick Ingolia <ingolia@berkeley.edu>"]
+
+[dependencies]
+bio = "0.25"
+rust-htslib = "0.24"
+itertools = "*"
+csv = "*"
+clap = "*"
+failure = "*"
+
+[dev-dependencies]
+tempfile = "*"
+rand = "*"
+
+[profile.dev]
+opt-level = 3
+
+[lib]
+name = "barcode_assign"
+path = "src/barcode_assign/lib.rs"
+
+[[bin]]
+name = "bc-seqs"
+path = "src/bc_seqs.rs"
+
+[[bin]]
+name = "bc-align"
+path = "src/bc-align/main.rs"
+
+[[bin]]
+name = "bc-pileup"
+path = "src/bc-pileup/main.rs"
+
+[[bin]]
+name = "bc-count"
+path = "src/bc_count.rs"
+
+[[bin]]
+name = "bc-grna"
+path = "src/bc_grna.rs"
+
+[[bin]]
+name = "bc-frag"
+path = "src/bc_frag.rs"
+
+[[bin]]
+name = "bc-tabulate"
+path = "src/bc_tabulate.rs"
+
+[[bin]]
+name = "bc-collapse"
+path = "src/bc_collapse.rs"
