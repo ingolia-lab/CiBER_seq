@@ -14,10 +14,9 @@ use std::str;
 
 use bio::io::fasta;
 use bio::io::fasta::FastaRead;
-//use bio::io::fasta::FastaRead;
 use clap::{App, Arg};
 use rust_htslib::bam;
-use rust_htslib::prelude::*;
+use rust_htslib::bam::Read;
 
 use barcode_assign::barcode_group::*;
 
@@ -225,7 +224,7 @@ fn pileup_targets(config: &Config, refrec: &fasta::Record) -> Result<(), failure
         let (nstart, nomcov) = read_start_stats.add_read_group(qvec.iter());
 
         {
-            let mut tmpout = bam::Writer::from_path(&config.tmpfile, &header)?;
+            let mut tmpout = bam::Writer::from_path(&config.tmpfile, &header, bam::Format::BAM)?;
             for r in qvec {
                 tmpout.write(&r)?;
             }
