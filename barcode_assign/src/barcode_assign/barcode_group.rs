@@ -1,5 +1,5 @@
 use rust_htslib::bam;
-use rust_htslib::prelude::*;
+use rust_htslib::bam::Read;
 
 use failure::*;
 
@@ -38,8 +38,8 @@ impl<'a> BarcodeGroups<'a> {
     fn read_next_record(&mut self) -> Result<Option<bam::Record>, failure::Error> {
         let mut rec = bam::Record::new();
         match self.bam_reader.read(&mut rec) {
-            Ok(()) => Ok(Some(rec)),
-            Err(bam::ReadError::NoMoreRecord) => Ok(None),
+            Ok(true) => Ok(Some(rec)),
+            Ok(false) => Ok(None),
             Err(e) => Err(e.into()),
         }
     }

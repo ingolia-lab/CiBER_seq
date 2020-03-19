@@ -7,7 +7,7 @@ use rust_htslib::bam::record::{Cigar, CigarString};
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct AssignPos {
     tid: u32,
-    pos: i32,
+    pos: i64,
     is_reverse: bool,
 }
 
@@ -33,7 +33,7 @@ impl AssignPos {
         targets.get(self.tid as usize).unwrap_or(&"???").to_string()
     }
 
-    pub fn pos(&self) -> i32 {
+    pub fn pos(&self) -> i64 {
         self.pos
     }
     pub fn is_reverse(&self) -> bool {
@@ -152,7 +152,7 @@ impl AssignMatch {
         self.assign_pos.target(targets)
     }
 
-    pub fn pos(&self) -> i32 {
+    pub fn pos(&self) -> i64 {
         self.assign_pos.pos()
     }
     pub fn is_reverse(&self) -> bool {

@@ -6,7 +6,7 @@ use std::path::PathBuf;
 use std::str;
 
 use rust_htslib::bam;
-use rust_htslib::prelude::*;
+use rust_htslib::bam::Read;
 
 use assign::*;
 use barcode_group::*;
@@ -93,7 +93,7 @@ pub fn barcode_to_grna(config: &Config) -> Result<(), failure::Error> {
                 if let ReadAssign::Match(assign) = purity.primary_assign() {
                     write!(fidelity_out, "{}\n", assign.line(bc_str, &targets)?)?;
 
-                    if (assign.pos() == config.align_start as i32)
+                    if (assign.pos() == config.align_start as i64)
                         && (assign.is_reverse() == config.is_reverse)
                         && assign.is_cigar_perfect()
                         && assign.is_md_perfect()
