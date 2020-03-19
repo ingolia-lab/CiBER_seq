@@ -23,7 +23,7 @@ if (!exists("grna.assign.barcode.grna.good")) {
 
 options(stringsAsFactors=FALSE)
 if (!exists("guide.good.targets")) {
-  guide.good.targets <- read.delim("~/CiBER_seq_package/scripts/guide.good.targets_plus_empty.txt",
+  guide.good.targets <- read.delim("~/CiBER_seq/scripts/guide.good.targets_plus_empty.txt",
                                 stringsAsFactors=FALSE)
 }
 

@@ -10,7 +10,7 @@ PGK1='GAGATCCAGTCACTCGGtcgatTTAC'
 
 rm -f ${GZDIR}/samples.txt
 > ${GZDIR}/samples.txt
-echo ${GZDIR}*.gz | cut -d ' ' -f1- --output-delimiter=$'\n' | cut -d '.' -f 1 >> ${GZDIR}/samples.txt
+echo ${GZDIR}*.fastq | cut -d ' ' -f1- --output-delimiter=$'\n' | cut -d '.' -f 1 >> ${GZDIR}/samples.txt
 SAMP=${GZDIR}/samples.txt
 
 for i in $(cat ${SAMP})
@@ -18,7 +18,7 @@ do
 	if [[ ! -e "${i}his4.fastq.gz" ]]
 	then
 		cutadapt -a his4="${HIS4}" -a pgk1="${PGK1}" --minimum-length 10 \
-        	-o ${i}{name}.fastq.gz ${i}.fastq.gz
+        	-o ${i}{name}.fastq ${i}.fastq
 	fi
 done
 
@@ -30,8 +30,7 @@ do
 	do
 		if [[ ! -e "${i}${j}count.txt" ]]
         	then
-			gunzip $i$j.fastq.gz
-			~/CiBER_seq_package/scripts/debug/bc-count --fastq $i$j.fastq --output $i${j}-count.txt --neighborhood $i${j}
+			~/CiBER_seq/barcode_assign/bc-count --fastq $i$j.fastq --output $i${j}-count.txt --neighborhood $i${j}
 		fi
 	done
 done

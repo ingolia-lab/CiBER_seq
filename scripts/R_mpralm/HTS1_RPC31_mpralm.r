@@ -26,15 +26,20 @@ grna.assign.barcode.grna.good$guide[grna.assign.barcode.grna.good$guide == "No_g
 
 options(stringsAsFactors=FALSE)
 if (!exists("guide.good.targets")) {
-  guide.good.targets <- read.delim("~/CiBER_seq_package/scripts/guide.good.targets_plus_empty.txt",
+  guide.good.targets <- read.delim("~/CiBER_seq/scripts/guide.good.targets_plus_empty.txt",
                                 stringsAsFactors=FALSE)
 }
 
 # Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
 options(stringsAsFactors=FALSE)
-if (!exists("HTS1_RPC31_rep1")) {
-  HTS1_RPC31 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HTS1_RPC31/all_HTS1_RPC31_counts.txt",
+if (!exists("HTS1_counts")) {
+  all_HTS1 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HTS1_RPC31/all_HTS1counts.txt",
                                 stringsAsFactors=FALSE)
+}
+
+if (!exists("RPC31_counts")) {
+  all_RPC31 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HTS1_RPC31/all_RPC31counts.txt",
+                           stringsAsFactors=FALSE)
 }
 
 #start by loading in all the analysis packages you'll use with the code below
@@ -53,45 +58,48 @@ library(mpra)
 library(dplyr)
 library(data.table)
 
-#merge dataframes
-old <- c("barcode", "IVT_HTS1_Post_S2_R1_001.count.txt", "IVT_RPC31_Post_S4_R1_001.count.txt",
-         "IVT_HTS1_Pre_S1_R1_001.count.txt", "IVT_RPC31_Pre_S3_R1_001.count.txt",
-         "RNA_HTS1_Post_S6_R1_001.count.txt",
-         "RNA_RPC31_Post_S8_R1_001.count.txt", "RNA_HTS1_Pre_S5_R1_001.count.txt",
-         "RNA_RPC31_Pre_S7_R1_001.count.txt", "HTS1_DNA_post.count.txt", "RPC31_DNA_post.count.txt", "HTS1_DNA_pre.count.txt",
-         "RPC31_DNA_pre.count.txt", "HTS1_RNA_post.count.txt", "RPC31_RNA_post.count.txt", "HTS1_RNA_pre.count.txt",
-         "RPC31_RNA_pre.count.txt")
+#merge dataframes (old approach)
+#old <- c("barcode", "IVT_HTS1_Post_S2_R1_001.count.txt", "IVT_RPC31_Post_S4_R1_001.count.txt",
+#         "IVT_HTS1_Pre_S1_R1_001.count.txt", "IVT_RPC31_Pre_S3_R1_001.count.txt",
+#         "RNA_HTS1_Post_S6_R1_001.count.txt",
+#         "RNA_RPC31_Post_S8_R1_001.count.txt", "RNA_HTS1_Pre_S5_R1_001.count.txt",
+#         "RNA_RPC31_Pre_S7_R1_001.count.txt", "HTS1_DNA_post.count.txt", "RPC31_DNA_post.count.txt", "HTS1_DNA_pre.count.txt",
+#         "RPC31_DNA_pre.count.txt", "HTS1_RNA_post.count.txt", "RPC31_RNA_post.count.txt", "HTS1_RNA_pre.count.txt",
+#         "RPC31_RNA_pre.count.txt")
+#
+#newvars <- c("barcode", "IVT_HTS1_post1", "IVT_RPC31_post1",
+#         "IVT_HTS1_pre1", "IVT_RPC31_pre1",
+#         "RNA_HTS1_post1",
+#         "RNA_RPC31_post1", "RNA_HTS1_pre1",
+#         "RNA_RPC31_pre1", "IVT_HTS1_post3", "IVT_RPC31_post3", "IVT_HTS1_pre3",
+#         "IVT_RPC31_pre3", "RNA_HTS1_post3", "RNA_RPC31_post3", "RNA_HTS1_pre3",
+#         "RNA_RPC31_pre3")
+#
+#lookup = data.frame(old, newvars)
+#head(lookup)
+#
+#names(HTS1_RPC31) <- lookup[match(names(HTS1_RPC31), lookup$old),"newvars"]
+#
+#head(HTS1_RPC31)
+#all <- HTS1_RPC31
+#
+#all_HTS1 <- data.frame(all$barcode, all$IVT_HTS1_post1, all$IVT_HTS1_pre1, all$RNA_HTS1_post1, 
+#                       all$RNA_HTS1_pre1, all$IVT_HTS1_post3, 
+#                       all$IVT_HTS1_pre3, all$RNA_HTS1_post3, 
+#                       all$RNA_HTS1_pre3)
+#
+#all_RPC31 <- data.frame(all$barcode, all$IVT_RPC31_post1, all$IVT_RPC31_pre1, all$RNA_RPC31_post1, 
+#                        all$RNA_RPC31_pre1, all$IVT_RPC31_post3, 
+#                        all$IVT_RPC31_pre3, all$RNA_RPC31_post3, all$RNA_RPC31_pre3)
+#
+#names(all_HTS1) <- gsub(x = names(all_HTS1), pattern = "all.", replacement = "")
+#names(all_RPC31) <- gsub(x = names(all_RPC31), pattern = "all.", replacement = "")
+#
+#all_HTS1[is.na(all_HTS1)] <- 0
+#all_RPC31[is.na(all_RPC31)] <- 0
 
-newvars <- c("barcode", "IVT_HTS1_post1", "IVT_RPC31_post1",
-         "IVT_HTS1_pre1", "IVT_RPC31_pre1",
-         "RNA_HTS1_post1",
-         "RNA_RPC31_post1", "RNA_HTS1_pre1",
-         "RNA_RPC31_pre1", "IVT_HTS1_post3", "IVT_RPC31_post3", "IVT_HTS1_pre3",
-         "IVT_RPC31_pre3", "RNA_HTS1_post3", "RNA_RPC31_post3", "RNA_HTS1_pre3",
-         "RNA_RPC31_pre3")
-
-lookup = data.frame(old, newvars)
-head(lookup)
-
-names(HTS1_RPC31) <- lookup[match(names(HTS1_RPC31), lookup$old),"newvars"]
-
-head(HTS1_RPC31)
-all <- HTS1_RPC31
-
-all_HTS1 <- data.frame(all$barcode, all$IVT_HTS1_post1, all$IVT_HTS1_pre1, all$RNA_HTS1_post1, 
-                       all$RNA_HTS1_pre1, all$IVT_HTS1_post3, 
-                       all$IVT_HTS1_pre3, all$RNA_HTS1_post3, 
-                       all$RNA_HTS1_pre3)
-
-all_RPC31 <- data.frame(all$barcode, all$IVT_RPC31_post1, all$IVT_RPC31_pre1, all$RNA_RPC31_post1, 
-                        all$RNA_RPC31_pre1, all$IVT_RPC31_post3, 
-                        all$IVT_RPC31_pre3, all$RNA_RPC31_post3, all$RNA_RPC31_pre3)
-
-names(all_HTS1) <- gsub(x = names(all_HTS1), pattern = "all.", replacement = "")
-names(all_RPC31) <- gsub(x = names(all_RPC31), pattern = "all.", replacement = "")
-
-all_HTS1[is.na(all_HTS1)] <- 0
-all_RPC31[is.na(all_RPC31)] <- 0
+names(all_HTS1) <- gsub(x = names(all_HTS1), pattern = ".count.txt", replacement = "")
+names(all_RPC31) <- gsub(x = names(all_RPC31), pattern = ".count.txt", replacement = "")
 
 head(all_HTS1)
 head(all_RPC31)

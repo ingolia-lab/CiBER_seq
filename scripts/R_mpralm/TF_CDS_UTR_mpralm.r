@@ -26,7 +26,7 @@ grna.assign.barcode.grna.good$guide[grna.assign.barcode.grna.good$guide == "No_g
 
 options(stringsAsFactors=FALSE)
 if (!exists("guide.good.targets")) {
-  guide.good.targets <- read.delim("~/CiBER_seq_package/scripts/guide.good.targets_plus_empty.txt",
+  guide.good.targets <- read.delim("~/CiBER_seq/scripts/guide.good.targets_plus_empty.txt",
                                 stringsAsFactors=FALSE)
 }
 
@@ -60,36 +60,39 @@ library(dplyr)
 library(data.table)
 
 #Incorporate a lookup table strategy to assign long column names to easier variale names
-old_utr_vars <- c("barcode", "IVT2_CUpostL_S19_L008_R1_001utr.count.txt", "IVT2_CUpreL_S18_L008_R1_001utr.count.txt",
-                  "RNA_CU_PostL_S58_L007_R1_001utr.count.txt", "RNA_CU_PreL_S57_L007_R1_001utr.count.txt",
-                  "IVT2_CUpostR_S106_L003_R1_001utr.count.txt", "IVT2_CUpreR_S105_L003_R1_001utr.count.txt",
-                  "RNA_CU_PostR_S66_L008_R1_001utr.count.txt", "RNA_CU_PreR_S65_L008_R1_001utr.count.txt")
+# old_utr_vars <- c("barcode", "IVT2_CUpostL_S19_L008_R1_001utr.count.txt", "IVT2_CUpreL_S18_L008_R1_001utr.count.txt",
+#                   "RNA_CU_PostL_S58_L007_R1_001utr.count.txt", "RNA_CU_PreL_S57_L007_R1_001utr.count.txt",
+#                   "IVT2_CUpostR_S106_L003_R1_001utr.count.txt", "IVT2_CUpreR_S105_L003_R1_001utr.count.txt",
+#                   "RNA_CU_PostR_S66_L008_R1_001utr.count.txt", "RNA_CU_PreR_S65_L008_R1_001utr.count.txt")
+# 
+# old_cds_vars <- c("barcode", "IVT2_CUpostL_S19_L008_R1_001cds.count.txt", "IVT2_CUpreL_S18_L008_R1_001cds.count.txt",
+#                   "RNA_CU_PostL_S58_L007_R1_001cds.count.txt", "RNA_CU_PreL_S57_L007_R1_001cds.count.txt",
+#                   "IVT2_CUpostR_S106_L003_R1_001cds.count.txt", "IVT2_CUpreR_S105_L003_R1_001cds.count.txt",
+#                   "RNA_CU_PostR_S66_L008_R1_001cds.count.txt", "RNA_CU_PreR_S65_L008_R1_001cds.count.txt")
+# 
+# newvars <- c("barcode", "IVT_postL", "IVT_preL",
+#              "RNA_postL", "RNA_preL",
+#              "IVT_postR", "IVT_preR",
+#              "RNA_postR", "RNA_preR")
+# 
+# lookup = data.frame(old_utr_vars, old_cds_vars, newvars)
+# 
+# names(TF_UTR) <- lookup[match(names(TF_UTR), lookup$old_utr_vars),"newvars"]
+# names(TF_CDS) <- lookup[match(names(TF_CDS), lookup$old_cds_vars),"newvars"]
+# 
+# head(TF_UTR)
+# head(TF_CDS)
 
-old_cds_vars <- c("barcode", "IVT2_CUpostL_S19_L008_R1_001cds.count.txt", "IVT2_CUpreL_S18_L008_R1_001cds.count.txt",
-                  "RNA_CU_PostL_S58_L007_R1_001cds.count.txt", "RNA_CU_PreL_S57_L007_R1_001cds.count.txt",
-                  "IVT2_CUpostR_S106_L003_R1_001cds.count.txt", "IVT2_CUpreR_S105_L003_R1_001cds.count.txt",
-                  "RNA_CU_PostR_S66_L008_R1_001cds.count.txt", "RNA_CU_PreR_S65_L008_R1_001cds.count.txt")
-
-newvars <- c("barcode", "IVT_postL", "IVT_preL",
-             "RNA_postL", "RNA_preL",
-             "IVT_postR", "IVT_preR",
-             "RNA_postR", "RNA_preR")
-
-lookup = data.frame(old_utr_vars, old_cds_vars, newvars)
-
-names(TF_UTR) <- lookup[match(names(TF_UTR), lookup$old_utr_vars),"newvars"]
-names(TF_CDS) <- lookup[match(names(TF_CDS), lookup$old_cds_vars),"newvars"]
-
-head(TF_UTR)
-head(TF_CDS)
+names(TF_UTR) <- gsub(x = names(TF_UTR), pattern = ".count.txt", replacement = "")
+names(TF_CDS) <- gsub(x = names(TF_CDS), pattern = ".count.txt", replacement = "")
 
 #create dataframes that mpralm can use, filter with a 32 count cut off for DNA pre samples
 #filter for either left or right > 32 read counts and merge with barcode assignment dataframe
 cds_32 <- filter(TF_CDS,
-                  TF_CDS$IVT_preL > 32 | TF_CDS$IVT_preR > 32)
+                  TF_CDS$IVT_CU_preL > 32 | TF_CDS$IVT_CU_preR > 32)
 
 utr_32 <- filter(TF_UTR,
-                  TF_UTR$IVT_preL > 32 | TF_UTR$IVT_preR > 32)
+                  TF_UTR$IVT_CU_preL > 32 | TF_UTR$IVT_CU_preR > 32)
 
 cds_32_guides <- merge(cds_32, grna.assign.barcode.grna.good, by="barcode")
 
@@ -97,17 +100,17 @@ utr_32_guides <- merge(utr_32, grna.assign.barcode.grna.good, by="barcode")
 
 #Preparing the DNA, RNA, and Element ID (eid) dataframes for His4 mpralm analysis
 dna <- cds_32_guides
-dna <-data.frame(row.names=dna$barcode, dna$IVT_preL,
-                 dna$IVT_preR,
-                 dna$IVT_postL,
-                 dna$IVT_postR)
+dna <-data.frame(row.names=dna$barcode, dna$IVT_CU_preL,
+                 dna$IVT_CU_preR,
+                 dna$IVT_CU_postL,
+                 dna$IVT_CU_postR)
 names(dna) <- c("preL", "preR", "postL", "postR")
 
 rna <- cds_32_guides
-rna <-data.frame(row.names=rna$barcode, rna$RNA_preL,
-                 rna$RNA_preR,
-                 rna$RNA_postL,
-                 rna$RNA_postR)
+rna <-data.frame(row.names=rna$barcode, rna$RNA_CU_preL,
+                 rna$RNA_CU_preR,
+                 rna$RNA_CU_postL,
+                 rna$RNA_CU_postR)
 names(rna) <- c("preL", "preR", "postL", "postR")
 
 eid <- as.character(cds_32_guides$guide)

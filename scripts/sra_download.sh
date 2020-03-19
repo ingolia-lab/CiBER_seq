@@ -28,12 +28,13 @@ mv ${GZDIR}/SRR10327353_1.fastq ${GZDIR}/mod_bc_gRNA_R2.fastq
 
 mv ${GZDIR}/bc*.fastq ${GZDIR}/bc_validation/
 mv ${GZDIR}/*CU*.fastq ${GZDIR}/GCN4_CDS_UTR/
-
-mv ${GZDIR}/PGK_HIS*.fastq ${GZDIR}/HIS4_PGK1_pooled/
+mv ${GZDIR}/PH_*.fastq ${GZDIR}/HIS4_PGK1_pooled/
 mv ${GZDIR}/mod*.fastq ${GZDIR}/PE_bc_gRNA_assignment/
 
 cp -r ${GZDIR}/HIS4_PGK1_pooled/ ${GZDIR}/HIS4_PGK1_3AT/
 mv ${GZDIR}/*3AT*.fastq ${GZDIR}/HIS4_PGK1_3AT/
 
-mv ${GZDIR}/*HTS1*.fastq ${GZDIR}/HTS1_RPC31/
-mv ${GZDIR}/*RPC31*.fastq ${GZDIR}/HTS1_RPC31/
+mkdir ${GZDIR}/HTS1_RPC31/HTS1/
+mkdir ${GZDIR}/HTS1_RPC31/RPC31/
+mv ${GZDIR}/*HTS1*.fastq ${GZDIR}/HTS1_RPC31/HTS1
+mv ${GZDIR}/*RPC31*.fastq ${GZDIR}/HTS1_RPC31/RPC31/
