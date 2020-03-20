@@ -16,7 +16,7 @@ do
 	if [[ ! -e "${GZDIR1}all_HTS1counts.txt" ]]
 	then
 		fastx_trimmer -f 1 -l 25 -i $i.fastq -o $i-trim25.fastq
-		~CiBER_seq/barcode_assign/bc-count --fastq $i-trim25.fastq --output ${i}-count.txt --neighborhood $i
+		../barcode_assign/target/debug/bc-count --fastq $i-trim25.fastq --output ${i}-count.txt --neighborhood $i
 	fi
 done
 
@@ -32,7 +32,7 @@ do
         if [[ ! -e "${GZDIR2}all_RPC31counts.txt" ]]
         then
                 fastx_trimmer -f 1 -l 25 -i $i.fastq -o $i-trim25.fastq
-                ~/CiBER_seq/barcode_assign/bc-count --fastq $i-trim25.fastq --output ${i}-count.txt --neighborhood $i
+                ../barcode_assign/target/debug/bc-count --fastq $i-trim25.fastq --output ${i}-count.txt --neighborhood $i
         fi
 done
 

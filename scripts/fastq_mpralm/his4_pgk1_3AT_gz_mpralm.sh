@@ -30,7 +30,7 @@ do
 	do
 		if [[ ! -e "${i}${j}count.txt" ]]
         	then
-			~/CiBER_seq/barcode_assign/bc-count --fastq $i$j.fastq --output $i${j}-count.txt --neighborhood $i${j}
+			../barcode_assign/target/debug/bc-count --fastq $i$j.fastq --output $i${j}-count.txt --neighborhood $i${j}
 		fi
 	done
 done

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#defining directiories
+#defining directories
 HOME=$(echo ~)
 DIR='/CiBER_seq/scripts/'
 SRADIR=${HOME}${DIR}

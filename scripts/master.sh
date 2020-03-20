@@ -1,5 +1,9 @@
 #!/bin/bash -x
 
+#make fastq data directory
+#mkdir ~/CiBER_seq_package/
+#mkdir ~/CiBER_seq_package/all_raw_fastq/
+
 #downloads sra files and puts them into corresponding folders
 nohup bash sra_download.sh
 

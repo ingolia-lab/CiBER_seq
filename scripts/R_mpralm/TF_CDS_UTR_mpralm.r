@@ -26,7 +26,7 @@ grna.assign.barcode.grna.good$guide[grna.assign.barcode.grna.good$guide == "No_g
 
 options(stringsAsFactors=FALSE)
 if (!exists("guide.good.targets")) {
-  guide.good.targets <- read.delim("~/CiBER_seq/scripts/guide.good.targets_plus_empty.txt",
+  guide.good.targets <- read.delim("./guide.good.targets_plus_empty.txt",
                                 stringsAsFactors=FALSE)
 }
 

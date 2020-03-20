@@ -10,7 +10,7 @@ UTR='GAGATCCAGTCACTCGGTCAGACTAT'
 
 rm -f ${GZDIR}/samples.txt
 > ${GZDIR}/samples.txt
-echo ${GZDIR}*.gz | cut -d ' ' -f1- --output-delimiter=$'\n' | cut -d '.' -f 1 >> ${GZDIR}/samples.txt
+echo ${GZDIR}*.fastq | cut -d ' ' -f1- --output-delimiter=$'\n' | cut -d '.' -f 1 >> ${GZDIR}/samples.txt
 SAMP=${GZDIR}/samples.txt
 
 for i in $(cat ${SAMP})
@@ -28,8 +28,7 @@ for i in $(cat ${SAMP})
 do
 	for j in ${PROM}
 	do
-		gunzip $i$j.fastq.gz
-		~/CiBER_seq_package/scripts/debug/bc-count --fastq $i$j.fastq --output $i${j}-count.txt --neighborhood $i${j}
+		../barcode_assign/target/debug/bc-count --fastq $i$j.fastq --output $i${j}-count.txt --neighborhood $i${j}
 	done
 done
 
