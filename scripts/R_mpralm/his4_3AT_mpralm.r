@@ -55,22 +55,28 @@ library(dplyr)
 library(data.table)
 
 #Incorporate a lookup table strategy to assign long column names to easier variale names
-old_pgk1_vars <- c("barcode", "IVT_3AT_L_S21_L008_R1_001pgk1.count.txt", "IVT_3AT_R_S22_L008_R1_001pgk1.count.txt", "IVT_PostL_S19_L008_R1_001pgk1.count.txt",
-                   "IVT_PostR_S20_L008_R1_001pgk1.count.txt", "IVT_PreL_S17_L008_R1_001pgk1.count.txt", "IVT_PreR_S18_L008_R1_001pgk1.count.txt",
-                   "RNA_3AT_L_S27_L008_R1_001pgk1.count.txt", "RNA_3AT_R_S28_L008_R1_001pgk1.count.txt", "RNA_PostL_S25_L008_R1_001pgk1.count.txt",
-                   "RNA_PostR_S26_L008_R1_001pgk1.count.txt", "RNA_PreL_S23_L008_R1_001pgk1.count.txt", "RNA_PreR_S24_L008_R1_001pgk1.count.txt")
+# old_pgk1_vars <- c("barcode", "IVT_3AT_L_S21_L008_R1_001pgk1.count.txt", "IVT_3AT_R_S22_L008_R1_001pgk1.count.txt", "IVT_PostL_S19_L008_R1_001pgk1.count.txt",
+#                    "IVT_PostR_S20_L008_R1_001pgk1.count.txt", "IVT_PreL_S17_L008_R1_001pgk1.count.txt", "IVT_PreR_S18_L008_R1_001pgk1.count.txt",
+#                    "RNA_3AT_L_S27_L008_R1_001pgk1.count.txt", "RNA_3AT_R_S28_L008_R1_001pgk1.count.txt", "RNA_PostL_S25_L008_R1_001pgk1.count.txt",
+#                    "RNA_PostR_S26_L008_R1_001pgk1.count.txt", "RNA_PreL_S23_L008_R1_001pgk1.count.txt", "RNA_PreR_S24_L008_R1_001pgk1.count.txt")
+# 
+# old_his4_vars <- c("barcode", "IVT_3AT_L_S21_L008_R1_001his4.count.txt", "IVT_3AT_R_S22_L008_R1_001his4.count.txt", "IVT_PostL_S19_L008_R1_001his4.count.txt",
+#                    "IVT_PostR_S20_L008_R1_001his4.count.txt", "IVT_PreL_S17_L008_R1_001his4.count.txt", "IVT_PreR_S18_L008_R1_001his4.count.txt",
+#                    "RNA_3AT_L_S27_L008_R1_001his4.count.txt", "RNA_3AT_R_S28_L008_R1_001his4.count.txt", "RNA_PostL_S25_L008_R1_001his4.count.txt",
+#                    "RNA_PostR_S26_L008_R1_001his4.count.txt", "RNA_PreL_S23_L008_R1_001his4.count.txt", "RNA_PreR_S24_L008_R1_001his4.count.txt")
+# 
+# newvars <- c("barcode", "IVT_3AT_L", "IVT_3AT_R", "IVT_postL", "IVT_postR", "IVT_preL", "IVT_preR", "RNA_3AT_L", "RNA_3AT_R", "RNA_postL", "RNA_postR", "RNA_preL", "RNA_preR")
+# 
+# lookup = data.frame(old_pgk1_vars, old_his4_vars, newvars)
+# 
+# names(his4_seq1) <- lookup[match(names(his4_seq1), lookup$old_his4_vars),"newvars"]
+# names(pgk1_seq1) <- lookup[match(names(pgk1_seq1), lookup$old_pgk1_vars),"newvars"]
 
-old_his4_vars <- c("barcode", "IVT_3AT_L_S21_L008_R1_001his4.count.txt", "IVT_3AT_R_S22_L008_R1_001his4.count.txt", "IVT_PostL_S19_L008_R1_001his4.count.txt",
-                   "IVT_PostR_S20_L008_R1_001his4.count.txt", "IVT_PreL_S17_L008_R1_001his4.count.txt", "IVT_PreR_S18_L008_R1_001his4.count.txt",
-                   "RNA_3AT_L_S27_L008_R1_001his4.count.txt", "RNA_3AT_R_S28_L008_R1_001his4.count.txt", "RNA_PostL_S25_L008_R1_001his4.count.txt",
-                   "RNA_PostR_S26_L008_R1_001his4.count.txt", "RNA_PreL_S23_L008_R1_001his4.count.txt", "RNA_PreR_S24_L008_R1_001his4.count.txt")
+names(his4_seq1) <- gsub(x = names(his4_seq1), pattern = "his4.count.txt", replacement = "")
+names(his4_seq1) <- gsub(x = names(his4_seq1), pattern = "PH_", replacement = "")
 
-newvars <- c("barcode", "IVT_3AT_L", "IVT_3AT_R", "IVT_postL", "IVT_postR", "IVT_preL", "IVT_preR", "RNA_3AT_L", "RNA_3AT_R", "RNA_postL", "RNA_postR", "RNA_preL", "RNA_preR")
-
-lookup = data.frame(old_pgk1_vars, old_his4_vars, newvars)
-
-names(his4_seq1) <- lookup[match(names(his4_seq1), lookup$old_his4_vars),"newvars"]
-names(pgk1_seq1) <- lookup[match(names(pgk1_seq1), lookup$old_pgk1_vars),"newvars"]
+names(pgk1_seq1) <- gsub(x = names(pgk1_seq1), pattern = "pgk1.count.txt", replacement = "")
+names(pgk1_seq1) <- gsub(x = names(pgk1_seq1), pattern = "PH_", replacement = "")
 
 head(his4_seq1)
 head(pgk1_seq1)
