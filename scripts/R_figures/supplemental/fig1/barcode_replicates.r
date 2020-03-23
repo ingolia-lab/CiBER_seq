@@ -20,15 +20,15 @@ if (!requireNamespace("png", quietly = TRUE))
   install.packages("png")
 library(png)
 
-bc1 <- read.table(file = '~/CiBER_seq_package/all_raw_fasta_gz/bc_validation/DNA_RNA.BC1.tsv', 
+bc1 <- read.table(file = '~/CiBER_seq_package/all_raw_fastq/bc_validation/DNA_RNA.BC1.tsv', 
            sep = '\t', header = FALSE)
-bc2 <- read.table(file = '~/CiBER_seq_package/all_raw_fasta_gz/bc_validation/DNA_RNA.BC2.tsv', 
+bc2 <- read.table(file = '~/CiBER_seq_package/all_raw_fastq/bc_validation/DNA_RNA.BC2.tsv', 
                   sep = '\t', header = FALSE)
-bc3 <- read.table(file = '~/CiBER_seq_package/all_raw_fasta_gz/bc_validation/DNA_RNA.BC3.tsv', 
+bc3 <- read.table(file = '~/CiBER_seq_package/all_raw_fastq/bc_validation/DNA_RNA.BC3.tsv', 
                   sep = '\t', header = FALSE)
-bc4 <- read.table(file = '~/CiBER_seq_package/all_raw_fasta_gz/bc_validation/DNA_RNA.BC4.tsv', 
+bc4 <- read.table(file = '~/CiBER_seq_package/all_raw_fastq/bc_validation/DNA_RNA.BC4.tsv', 
                   sep = '\t', header = FALSE)
-bc6 <- read.table(file = '~/CiBER_seq_package/all_raw_fasta_gz/bc_validation/DNA_RNA.BC6.tsv', 
+bc6 <- read.table(file = '~/CiBER_seq_package/all_raw_fastq/bc_validation/DNA_RNA.BC6.tsv', 
                   sep = '\t', header = FALSE)
 
 bc1 <- filter(bc1, bc1$V2>32 & bc1$V3>32)
@@ -40,8 +40,8 @@ bc6 <- filter(bc6, bc6$V2>32 & bc6$V3>32)
 #DNA replicates bc1__________________________________________
 pdf("DNA_bc1_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc1$V2+1), log10(bc1$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc1$V2+1), log10(bc1$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -52,10 +52,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "DNA_bc1.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc1$V2+1), log10(bc1$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc1$V2+1), log10(bc1$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -90,8 +90,8 @@ dev.off()
 #RNA replicates bc1__________________________________________
 pdf("RNA_bc1_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc1$V4+1), log10(bc1$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc1$V4+1), log10(bc1$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -102,10 +102,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "RNA_bc1.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc1$V4+1), log10(bc1$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc1$V4+1), log10(bc1$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -140,8 +140,8 @@ dev.off()
 #DNA replicates bc2__________________________________________
 pdf("DNA_bc2_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc2$V2+1), log10(bc2$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc2$V2+1), log10(bc2$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -152,10 +152,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "DNA_bc2.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc2$V2+1), log10(bc2$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc2$V2+1), log10(bc2$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -190,8 +190,8 @@ dev.off()
 #RNA replicates bc2__________________________________________
 pdf("RNA_bc2_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc2$V4+1), log10(bc2$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc2$V4+1), log10(bc2$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -202,10 +202,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "RNA_bc2.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc2$V4+1), log10(bc2$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc2$V4+1), log10(bc2$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -240,8 +240,8 @@ dev.off()
 #DNA replicates bc3__________________________________________
 pdf("DNA_bc3_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc3$V2+1), log10(bc3$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc3$V2+1), log10(bc3$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -252,10 +252,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "DNA_bc3.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc3$V2+1), log10(bc3$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc3$V2+1), log10(bc3$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -290,8 +290,8 @@ dev.off()
 #RNA replicates bc3__________________________________________
 pdf("RNA_bc3_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc3$V4+1), log10(bc3$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc3$V4+1), log10(bc3$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -302,10 +302,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "RNA_bc3.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc3$V4+1), log10(bc3$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc3$V4+1), log10(bc3$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -340,8 +340,8 @@ dev.off()
 #DNA replicates bc4__________________________________________
 pdf("DNA_bc4_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc4$V2+1), log10(bc4$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc4$V2+1), log10(bc4$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -352,10 +352,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "DNA_bc4.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc4$V2+1), log10(bc4$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc4$V2+1), log10(bc4$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -390,8 +390,8 @@ dev.off()
 #RNA replicates bc4___________________________________________________
 pdf("RNA_bc4_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc4$V4+1), log10(bc4$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc4$V4+1), log10(bc4$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -402,10 +402,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "RNA_bc4.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc4$V4+1), log10(bc4$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc4$V4+1), log10(bc4$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -441,8 +441,8 @@ dev.off()
 #DNA replicates bc6__________________________________________
 pdf("DNA_bc6_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc6$V2+1), log10(bc6$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc6$V2+1), log10(bc6$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -453,10 +453,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "DNA_bc6.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc6$V2+1), log10(bc6$V3+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc6$V2+1), log10(bc6$V3+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -491,8 +491,8 @@ dev.off()
 #RNA replicates bc6___________________________________________________
 pdf("RNA_bc6_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(bc6$V4+1), log10(bc6$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+plot(log10(bc6$V4+1), log10(bc6$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE, 
      type="n")
 
 ## Capture the plot window coordinates
@@ -503,10 +503,10 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "RNA_bc6.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
-plot(log10(bc6$V4+1), log10(bc6$V5+1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+plot(log10(bc6$V4+1), log10(bc6$V5+1), pch=16, cex=0.6, 
+     col = alpha("black", 0.3), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image

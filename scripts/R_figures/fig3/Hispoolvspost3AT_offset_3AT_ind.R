@@ -4,8 +4,8 @@ if (!requireNamespace("dplyr", quietly = TRUE))
   install.packages("dplyr")
 library(dplyr)
 
-mpralmpath <- "~/CiBER_seq_package/all_raw_fasta_gz/"
-GOpath <- "~/CiBER_seq_package/scripts/GO_analysis_files/GO_annotation_lists/"
+mpralmpath <- "~/CiBER_seq_package/all_raw_fastq/"
+GOpath <- "~/CiBER_github/CiBER_seq/scripts/GO_analysis_files/GO_annotation_lists/"
 
 his4_postv3AT <- read.delim(paste(mpralmpath, "HIS4_PGK1_3AT/his4_postv3AT_sum_mpralm", ".txt", sep=""),
                             stringsAsFactors=FALSE, header = TRUE)
@@ -25,6 +25,9 @@ his4_poolv3AT_insig <- filter(his4_poolv3AT,
                               his4_poolv3AT$his4_postv3AT_adj.P.val > 0.05 & his4_poolv3AT$his4_pooled_adj.P.val > 0.05)
 
 his4grna <- filter(his4_poolv3AT, his4_poolv3AT$his4_postv3AT_Yorf1 == "YCL030C")
+gcn4grna <- filter(his4_poolv3AT, his4_poolv3AT$his4_postv3AT_Yorf1 == "YEL009C")
+pcl5grna <- filter(his4_poolv3AT, his4_poolv3AT$his4_postv3AT_Yorf1 == "YHR071W")
+hts1grna <- filter(his4_poolv3AT, his4_poolv3AT$his4_postv3AT_Yorf1 == "YPR033C")
 
 head(his4_poolv3AT_sig)
 head(his4_poolv3AT_insig)
@@ -95,6 +98,21 @@ points(x = -his4grna$his4_pooled_logFC,
        type="n",
        col="gray13"
 )
+points(x = -gcn4grna$his4_pooled_logFC,
+       y = -gcn4grna$postv3AT_offsetLFC,
+       type="n",
+       col="gray13"
+)
+points(x = -pcl5grna$his4_pooled_logFC,
+       y = -pcl5grna$postv3AT_offsetLFC,
+       type="n",
+       col="gray13"
+)
+points(x = -hts1grna$his4_pooled_logFC,
+       y = -hts1grna$postv3AT_offsetLFC,
+       type="n",
+       col="gray13"
+)
 abline(h = 0, col="black")
 abline(v = 0, col="black")
 
@@ -150,6 +168,21 @@ points(x = -translationcontrol_handcurhis4_poolv3AT_sig$his4_pooled_logFC,
 )
 points(x = -his4grna$his4_pooled_logFC,
        y = -his4grna$postv3AT_offsetLFC,
+       pch=16, cex=0.9,
+       col="gray13"
+)
+points(x = -gcn4grna$his4_pooled_logFC,
+       y = -gcn4grna$postv3AT_offsetLFC,
+       pch=16, cex=0.9,
+       col="gray13"
+)
+points(x = -pcl5grna$his4_pooled_logFC,
+       y = -pcl5grna$postv3AT_offsetLFC,
+       pch=16, cex=0.9,
+       col="gray13"
+)
+points(x = -hts1grna$his4_pooled_logFC,
+       y = -hts1grna$postv3AT_offsetLFC,
        pch=16, cex=0.9,
        col="gray13"
 )

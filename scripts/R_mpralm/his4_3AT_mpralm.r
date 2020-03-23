@@ -93,6 +93,9 @@ pgk1_32_guides <- merge(pgk1_32, grna.assign.barcode.grna.good, by="barcode")
 
 his4_32_guides <- merge(his4_32, grna.assign.barcode.grna.good, by="barcode")
 
+head(pgk1_32_guides)
+head(his4_32_guides)
+
 #Preparing the DNA, RNA, and Element ID (eid) dataframes for His4 mpralm analysis
 dna <- his4_32_guides
 dna <-data.frame(row.names=dna$barcode, dna$IVT_3AT_L, 

@@ -169,7 +169,7 @@ head(his4_seq1)
 #
 #head(all_his4)
 
-his4_seq1 <- all_his4
+all_his4 <- his4_seq1
 
 his4_32 <- filter(all_his4,
                   all_his4$IVT_preL > 32 | all_his4$IVT_preR > 32)

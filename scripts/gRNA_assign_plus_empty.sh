@@ -93,10 +93,10 @@ then
         --bam-by-name "${DATADIR}/grna_barcode_sorted.bam" \
         --outbase "${DATADIR}/grna-assign-"
 
-#    cut -f1 "${DATADIR}/grna-assign-barcode-grna-good.txt" \
-#        "${DATADIR}/grna-assign-barcode-bad-assign.txt" \
-#        > "${DATADIR}/barcodes-known.txt"
-#
+    cut -f1 "${DATADIR}/grna-assign-barcode-grna-good.txt" \
+        "${DATADIR}/grna-assign-barcode-bad-assign.txt" \
+        > "${DATADIR}/barcodes-known.txt"
+
 #    grep -F -f "${DATADIR}/barcodes-known.txt" \
 #         "${DATADIR}/rym.txt" \
 #         > rym-known.txt

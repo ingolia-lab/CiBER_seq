@@ -1,4 +1,4 @@
-datadir = "/mnt/ingolialab/rmuller1/CiBER_seq_package/all_raw_fasta_gz/bc_validation/"
+datadir="~/CiBER_seq_package/all_raw_fastq/bc_validation/"
 
 from Bio import SeqIO
 class FASTQtoBCcounts():

@@ -1,6 +1,6 @@
 #graph replicates RNA and DNA
 
-mpralmpath <- "~/CiBER_seq_package/all_raw_fasta_gz/"
+mpralmpath <- "~/CiBER_seq_package/all_raw_fastq/"
 
 his4_pool_reads <- read.delim(paste(mpralmpath, 
                                 "HIS4_PGK1_pooled/more_seq/all_his4_moreseq_counts", 
@@ -33,8 +33,8 @@ pgk1_pool_reads <- filter(pgk1_pool_reads,
 pdf("his4_IVT_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(his4_pool_reads$IVT_PreL_S50_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -44,12 +44,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "his4_IVT_pre_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(his4_pool_reads$IVT_PreL_S50_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -85,8 +85,8 @@ dev.off()
 pdf("his4_IVT_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(his4_pool_reads$IVT_PostL_S52_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PostR_S53_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(his4_pool_reads$IVT_PostR_S53_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -96,12 +96,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "his4_IVT_post_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(his4_pool_reads$IVT_PostL_S52_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PostR_S53_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(his4_pool_reads$IVT_PostR_S53_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -137,8 +137,8 @@ dev.off()
 pdf("pgk1_IVT_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(pgk1_pool_reads$IVT_PreL_S50_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -148,12 +148,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "pgk1_IVT_pre_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(pgk1_pool_reads$IVT_PreL_S50_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -190,8 +190,8 @@ dev.off()
 pdf("pgk1_IVT_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(pgk1_pool_reads$IVT_PostL_S52_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PostR_S53_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(pgk1_pool_reads$IVT_PostR_S53_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -201,12 +201,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "pgk1_IVT_post_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(pgk1_pool_reads$IVT_PostL_S52_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PostR_S53_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(pgk1_pool_reads$IVT_PostR_S53_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -242,8 +242,8 @@ dev.off()
 pdf("his4_RNA_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(his4_pool_reads$RNA_PreL_S54_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PreR_S55_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(his4_pool_reads$RNA_PreR_S55_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -253,12 +253,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "his4_RNA_pre_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(his4_pool_reads$RNA_PreL_S54_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PreR_S55_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(his4_pool_reads$RNA_PreR_S55_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -294,8 +294,8 @@ dev.off()
 pdf("his4_RNA_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(his4_pool_reads$RNA_PostL_S56_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PostR_S57_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(his4_pool_reads$RNA_PostR_S57_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -305,12 +305,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "his4_RNA_post_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(his4_pool_reads$RNA_PostL_S56_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PostR_S57_L008_R1_001his4.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(his4_pool_reads$RNA_PostR_S57_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -346,8 +346,8 @@ dev.off()
 pdf("pgk1_RNA_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(pgk1_pool_reads$RNA_PreL_S54_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PreR_S55_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(pgk1_pool_reads$RNA_PreR_S55_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -357,12 +357,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "pgk1_RNA_pre_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(pgk1_pool_reads$RNA_PreL_S54_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PreR_S55_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(pgk1_pool_reads$RNA_PreR_S55_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image
@@ -399,8 +399,8 @@ dev.off()
 pdf("pgk1_RNA_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
 plot(log10(pgk1_pool_reads$RNA_PostL_S56_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PostR_S57_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE, 
+     log10(pgk1_pool_reads$RNA_PostR_S57_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
 coords <- par("usr")
@@ -410,12 +410,12 @@ width <- max(gx) - min(gx)
 height <- max(gy) - min(gy)
 
 pointsfile <- "pgk1_RNA_post_replicates.png"
-png(pointsfile, width=width, height=height, units="in", res=1500, bg="transparent")
+png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
 plot(log10(pgk1_pool_reads$RNA_PostL_S56_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PostR_S57_L008_R1_001pgk1.count.txt + 1), pch=20, 
-     col = alpha("black", 0.1), axes = FALSE)
+     log10(pgk1_pool_reads$RNA_PostR_S57_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+     col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
 ## Read in the PNG file and draw as a raster image

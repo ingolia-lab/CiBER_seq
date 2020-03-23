@@ -83,8 +83,9 @@ library(data.table)
 # head(TF_UTR)
 # head(TF_CDS)
 
-names(TF_UTR) <- gsub(x = names(TF_UTR), pattern = ".count.txt", replacement = "")
-names(TF_CDS) <- gsub(x = names(TF_CDS), pattern = ".count.txt", replacement = "")
+names(TF_UTR) <- gsub(x = names(TF_UTR), pattern = "utr.count.txt", replacement = "")
+
+names(TF_CDS) <- gsub(x = names(TF_CDS), pattern = "cds.count.txt", replacement = "")
 
 #create dataframes that mpralm can use, filter with a 32 count cut off for DNA pre samples
 #filter for either left or right > 32 read counts and merge with barcode assignment dataframe
@@ -97,6 +98,10 @@ utr_32 <- filter(TF_UTR,
 cds_32_guides <- merge(cds_32, grna.assign.barcode.grna.good, by="barcode")
 
 utr_32_guides <- merge(utr_32, grna.assign.barcode.grna.good, by="barcode")
+
+head(grna.assign.barcode.grna.good)
+head(cds_32)
+head(cds_32_guides)
 
 #Preparing the DNA, RNA, and Element ID (eid) dataframes for His4 mpralm analysis
 dna <- cds_32_guides
@@ -143,17 +148,18 @@ head(cds_sum_mpralm)
 
 #Same mpralm analysis for pgk1 dataset
 dna <- utr_32_guides
-dna <-data.frame(row.names=dna$barcode, dna$IVT_preL,
-                 dna$IVT_preR,
-                 dna$IVT_postL,
-                 dna$IVT_postR)
+head(dna)
+dna <-data.frame(row.names=dna$barcode, dna$IVT_CU_preL,
+                 dna$IVT_CU_preR,
+                 dna$IVT_CU_postL,
+                 dna$IVT_CU_postR)
 names(dna) <- c("preL", "preR", "postL", "postR")
 
 rna <- utr_32_guides
-rna <-data.frame(row.names=rna$barcode, rna$RNA_preL,
-                 rna$RNA_preR,
-                 rna$RNA_postL,
-                 rna$RNA_postR)
+rna <-data.frame(row.names=rna$barcode, rna$RNA_CU_preL,
+                 rna$RNA_CU_preR,
+                 rna$RNA_CU_postL,
+                 rna$RNA_CU_postR)
 names(rna) <- c("preL", "preR", "postL", "postR")
 
 eid <- as.character(utr_32_guides$guide)

@@ -18,7 +18,7 @@ do
 	if [[ ! -e "${GZDIR}all_TF_CDS_counts.txt" ]]
 	then
 		cutadapt -a cds="${CDS}" -a utr="${UTR}" --minimum-length 10 \
-        	-o ${i}{name}.fastq.gz ${i}.fastq.gz
+        	-o ${i}{name}.fastq ${i}.fastq
 	fi
 done
 

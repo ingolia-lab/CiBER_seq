@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-datadir = "/mnt/ingolialab/rmuller1/CiBER_seq_package/all_raw_fasta_gz/bc_validation/"
+datadir = "~/CiBER_seq_package/all_raw_fastq/bc_validation/"
 
 options(stringsAsFactors=FALSE)
 if (!exists("DNA_RNA_BC1")) {
