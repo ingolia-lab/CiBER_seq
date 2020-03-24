@@ -1,18 +1,24 @@
-# CiBER_seq  (old description, will update soon)
-Code to make all the datasets and analysis for Amino-acid starvation CiBER_seq project
+# CiBER_seq
 
-This repository contains code to generate the following datasets:
-  -PGK1 vs His4 promoter
-  -His4 promoter in background gRNA knockdown of HTS1 or RPC31
-  -Synthetic Transcription Factor with promoter + 5'UTR of GCN4 and GCN4_CDS-fused TF
-  -barcode counting validation sequencing experiment
+#This repository is organized as follows:
+  -Code for generating barcode count tables and violin plots (figure 1) is found in /CiBER_seq/scripts/est_barcodes
+  -Barcode gRNA assignment code is located in /CiBER_seq/barcode_assign
+  -Code that processes raw sequencing .fastq files into barcode count tables is found in /CiBER_seq/scripts/fastq_mpralm
+  -Code that processes count tables to perform mpralm analysis is found in /CiBER_seq/scripts/R_mpralm
+  -Code that uses mpralm output data tables to graph volcano plots, scatter plots, and other paper figures is located in /CiBER_seq/scripts/R_figures
+  -Hand curated gene lists by biological function are found in /CiBER_seq/scripts/GO_analysis_files/GO_annotation_lists
+  -Additional code and reference .txt files for SRA download, pipeline analysis, and count table organization is found in /CiBER_seq/scripts
   
-The starting gzipped files are in rmuller1@compute1:/mnt/ingolialab/rmuller1/CiBER-seq_paper/all_raw_fasta_gz/
-
-Each dataset has a bash script associated with it. The bash script will take the starting gzipped files, unzip them, use a combination of fastx_trimmer and cut_adapt to assign 5nt identifiers to the sample type and trim the barcode reads to 25nt. The bash script then uses bc-count.py to count the number of times a barcode appears and bc-tabulate.py to organize the separate bc-count files into a dataframe matrix.
-
-The dataframe matrix can then be analyzed in R. Each dataset has an associated R script that will take the bc-tabulate matrix, filter cut-off for barcodes with an IVT-pre count >32 reads, and perform mpralm analysis (Kasper Hansen) to identify barcodes whose RNA:DNA ratio significantly changes in response to guide RNA induction. 
-
-Separately, the IVT only samples from His4/Pgk1 dataset (treated as the WT condition) and HTS1/RPC31 gRNA KD dataset (treated as the KD condition) were analyzed in DESeq2 as a growth screen to look for synthetic lethal guides and generally guides that affect growth. 
+#How the analysis pipeline works:
+All script directory callings within the code assumes the CiBER_seq repository has been downloaded into a folder in the home directory called "CiBER_github". The analysis pipeline is performed by running the master.sh script from the /CiBER_seq/scripts/ directory. The master.sh script calls the sra_download.sh script which makes a new directory ~/CiBER_seq_package/all_raw_fastq/ and downloads all the sra datasets to this location. The master.sh script then calls each dataset analysis pipeline. These pipelines trim adapters from the raw .fastq files, generate barcode counts, merge the barcode counts for each sample into a data matrix by experiment, and generate: 
+  -Barcode count tables for figure 1
+  -mpralm data tables for:
+    -P(HIS4) CiBER-seq
+    -P(PGK1) CiBER-seq
+    -P(HIS4) 3AT treatment CiBER-seq
+    -P(HIS4) Epistasis during 3AT treatment, HTS1 knockdown, and RPC31 knockdown
+    -P(GEM synthetic) with GCN4_CDS-transcription factor, GCN4 post-translational CiBER-seq
+    -P(GEM synthetic) with GCN4_UTR-transcription factor, GCN4 translation control CiBER-seq
+The barcode count tables and mpralm data tables are written to their corresponding directories labeled by experiment. They can be found in subdirectories of ~/CiBER_seq_package/all_raw_fastq/
 
 
