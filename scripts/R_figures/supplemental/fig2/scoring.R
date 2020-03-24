@@ -1,15 +1,15 @@
 ## mpralm scoring results for P(HIS4)
-mpralmFile <- '/mnt/ingolialab/rmuller1/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_pooled/his4_pooled_sum_mpralm.txt'
+mpralmFile <- '~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_pooled/his4_pooled_sum_mpralm.txt'
 mpralmAll <- read.delim(mpralmFile, stringsAsFactors=FALSE, row.names=1)
 mpralm <- mpralmAll[,c("Guide", "logFC", "AveExpr", "P.Value", "adj.P.Val")]
 neg <- mpralm[grepl("No_gRNA", mpralm$Guide),]
 mpralm <- mpralm[!grepl("No_gRNA", mpralm$Guide),]
 
 ## Guide information -- targeting and scoring
-seqGoodTargetFile <- '/mnt/ingolialab/ingolia/Prog/yeast-crispri/library_v1/sequence-good-targets.txt'
-seqRedundantTargetFile <- '/mnt/ingolialab/ingolia/Prog/yeast-crispri/library_v1/sequence-redundant-targets.txt'
-yorfCleanFile <- '/mnt/ingolialab/ingolia/Prog/yeast-crispri/library_v1/yorf-clean-target.txt'
-rescoreFile <- '/mnt/ingolialab/ingolia/Prog/yeast-crispri/mcglincy_2019/phenotype/figures/rescore.txt'
+seqGoodTargetFile <- '~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig2/sequence-good-targets.txt'
+seqRedundantTargetFile <- '~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig2/sequence-redundant-targets.txt'
+yorfCleanFile <- '~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig2/yorf-clean-target.txt'
+rescoreFile <- '~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig2/rescore.txt'
 
 targGood <- read.delim(seqGoodTargetFile, stringsAsFactors=FALSE)
 targRed <- read.delim(seqRedundantTargetFile, stringsAsFactors=FALSE)

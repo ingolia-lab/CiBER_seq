@@ -21,24 +21,14 @@ if (!exists("grna.assign.barcode.grna.good")) {
                                 stringsAsFactors=FALSE)
 }
 
+grna.assign.barcode.grna.good$guide <- as.character(grna.assign.barcode.grna.good$guide)
+grna.assign.barcode.grna.good$guide[grna.assign.barcode.grna.good$guide == "No_gRNA"] <- paste("No_gRNA", seq(1:788), sep=" ")
+
 options(stringsAsFactors=FALSE)
 if (!exists("guide.good.targets")) {
   guide.good.targets <- read.delim("./guide.good.targets_plus_empty.txt",
                                 stringsAsFactors=FALSE)
 }
-
-# Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
-# options(stringsAsFactors=FALSE)
-# if (!exists("his4_seq1")) {
-#   his4_seq1 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_3AT/all_his4_seq1_counts.txt",
-#                                 stringsAsFactors=FALSE)
-# }
-# 
-# options(stringsAsFactors=FALSE)
-# if (!exists("pgk1_seq1")) {
-#   pgk1_seq1 <- read.delim("~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_3AT/all_pgk1_seq1_counts.txt",
-#                                 stringsAsFactors=FALSE)
-# }
 
 # Load in raw count data and relevant gRNA barcode assignment and gRNA assignment of target files
 options(stringsAsFactors=FALSE)
@@ -69,81 +59,7 @@ library(mpra)
 library(dplyr)
 library(data.table)
 
-
-grna.assign.barcode.grna.good$guide <- as.character(grna.assign.barcode.grna.good$guide)
-grna.assign.barcode.grna.good$guide[grna.assign.barcode.grna.good$guide == "No_gRNA"] <- paste("No_gRNA", seq(1:788), sep=" ")
-
-# #Incorporate a lookup table strategy to assign long column names to easier variale names
-# old_pgk1_vars <- c("barcode", "IVT_3AT_L_S21_L008_R1_001pgk1.count.txt", "IVT_3AT_R_S22_L008_R1_001pgk1.count.txt", "IVT_PostL_S19_L008_R1_001pgk1.count.txt",
-#                    "IVT_PostR_S20_L008_R1_001pgk1.count.txt", "IVT_PreL_S17_L008_R1_001pgk1.count.txt", "IVT_PreR_S18_L008_R1_001pgk1.count.txt",
-#                    "RNA_3AT_L_S27_L008_R1_001pgk1.count.txt", "RNA_3AT_R_S28_L008_R1_001pgk1.count.txt", "RNA_PostL_S25_L008_R1_001pgk1.count.txt",
-#                    "RNA_PostR_S26_L008_R1_001pgk1.count.txt", "RNA_PreL_S23_L008_R1_001pgk1.count.txt", "RNA_PreR_S24_L008_R1_001pgk1.count.txt")
-# 
-# old_his4_vars <- c("barcode", "IVT_3AT_L_S21_L008_R1_001his4.count.txt", "IVT_3AT_R_S22_L008_R1_001his4.count.txt", "IVT_PostL_S19_L008_R1_001his4.count.txt",
-#                    "IVT_PostR_S20_L008_R1_001his4.count.txt", "IVT_PreL_S17_L008_R1_001his4.count.txt", "IVT_PreR_S18_L008_R1_001his4.count.txt",
-#                    "RNA_3AT_L_S27_L008_R1_001his4.count.txt", "RNA_3AT_R_S28_L008_R1_001his4.count.txt", "RNA_PostL_S25_L008_R1_001his4.count.txt",
-#                    "RNA_PostR_S26_L008_R1_001his4.count.txt", "RNA_PreL_S23_L008_R1_001his4.count.txt", "RNA_PreR_S24_L008_R1_001his4.count.txt")
-# 
-# newvars <- c("barcode", "IVT_3AT_L", "IVT_3AT_R", "IVT_postL", "IVT_postR", "IVT_preL", "IVT_preR", "RNA_3AT_L", "RNA_3AT_R", "RNA_postL", "RNA_postR", "RNA_preL", "RNA_preR")
-# 
-# old_pgk1_moreseq <- c("barcode", "IVT_PostL_S52_L008_R1_001pgk1.count.txt", "IVT_PostR_S53_L008_R1_001pgk1.count.txt",
-#                       "IVT_PreL_S50_L008_R1_001pgk1.count.txt", "IVT_PreR_S51_L008_R1_001pgk1.count.txt", "RNA_PostL_S56_L008_R1_001pgk1.count.txt",
-#                       "RNA_PostR_S57_L008_R1_001pgk1.count.txt", "RNA_PreL_S54_L008_R1_001pgk1.count.txt",
-#                       "RNA_PreR_S55_L008_R1_001pgk1.count.txt")
-# 
-# old_his4_moreseq <- c("barcode", "IVT_PostL_S52_L008_R1_001his4.count.txt", "IVT_PostR_S53_L008_R1_001his4.count.txt",
-#                       "IVT_PreL_S50_L008_R1_001his4.count.txt", "IVT_PreR_S51_L008_R1_001his4.count.txt", "RNA_PostL_S56_L008_R1_001his4.count.txt",
-#                       "RNA_PostR_S57_L008_R1_001his4.count.txt", "RNA_PreL_S54_L008_R1_001his4.count.txt",
-#                       "RNA_PreR_S55_L008_R1_001his4.count.txt")
-# 
-# newvars2 <- c("barcode", "IVT_postL2", "IVT_postR2", "IVT_preL2", "IVT_preR2", "RNA_postL2", "RNA_postR2", "RNA_preL2", "RNA_preR2")
-# 
-# lookup1 = data.frame(old_pgk1_vars, old_his4_vars, newvars)
-# lookup2 = data.frame(old_pgk1_moreseq, old_his4_moreseq, newvars2)
-# 
-# names(his4_seq1) <- lookup1[match(names(his4_seq1), lookup1$old_his4_vars),"newvars"]
-# names(pgk1_seq1) <- lookup1[match(names(pgk1_seq1), lookup1$old_pgk1_vars),"newvars"]
-# 
-# names(his4_moreseq) <- lookup2[match(names(his4_moreseq), lookup2$old_his4_moreseq),"newvars2"]
-# names(pgk1_moreseq) <- lookup2[match(names(pgk1_moreseq), lookup2$old_pgk1_moreseq),"newvars2"]
-# 
-# head(his4_seq1)
-# head(pgk1_seq1)
-# head(his4_moreseq)
-# head(pgk1_moreseq)
-
-#create dataframes that mpralm can use, pool seq runs, filter with a 32 count cut off for DNA pre samples
-#filter for either left or right > 32 read counts and merge with barcode assignment dataframe
-# pgk1 <- merge(pgk1_seq1, pgk1_moreseq, by="barcode", all=TRUE)
-# his4 <- merge(his4_seq1, his4_moreseq, by="barcode", all=TRUE)
-# pgk1[is.na(pgk1)] <- 0
-# his4[is.na(his4)] <- 0
-# head(pgk1)
-# head(his4)
-# 
-# all_pgk1 <- data.frame(pgk1$barcode)
-# all_his4 <- data.frame(his4$barcode)
-# colnames(all_pgk1)[colnames(all_pgk1)=="pgk1.barcode"] <- "barcode"
-# colnames(all_his4)[colnames(all_his4)=="his4.barcode"] <- "barcode"
-# 
-# all_pgk1$IVT_preL <- pgk1$IVT_preL + pgk1$IVT_preL2
-# all_pgk1$IVT_postL <- pgk1$IVT_postL + pgk1$IVT_postL2
-# all_pgk1$IVT_preR <- pgk1$IVT_preR + pgk1$IVT_preR2
-# all_pgk1$IVT_postR <- pgk1$IVT_postR + pgk1$IVT_postR2
-# all_pgk1$RNA_preL <- pgk1$RNA_preL + pgk1$RNA_preL2
-# all_pgk1$RNA_postL <- pgk1$RNA_postL + pgk1$RNA_postL2
-# all_pgk1$RNA_preR <- pgk1$RNA_preR + pgk1$RNA_preR2
-# all_pgk1$RNA_postR <- pgk1$RNA_postR + pgk1$RNA_postR2
-# 
-# all_his4$IVT_preL <- his4$IVT_preL + his4$IVT_preL2
-# all_his4$IVT_postL <- his4$IVT_postL + his4$IVT_postL2
-# all_his4$IVT_preR <- his4$IVT_preR + his4$IVT_preR2
-# all_his4$IVT_postR <- his4$IVT_postR + his4$IVT_postR2
-# all_his4$RNA_preL <- his4$RNA_preL + his4$RNA_preL2
-# all_his4$RNA_postL <- his4$RNA_postL + his4$RNA_postL2
-# all_his4$RNA_preR <- his4$RNA_preR + his4$RNA_preR2
-# all_his4$RNA_postR <- his4$RNA_postR + his4$RNA_postR2
-
+#Rename columns
 names(all_his4) <- gsub(x = names(all_his4), pattern = "his4.count.txt", replacement = "")
 names(all_his4) <- gsub(x = names(all_his4), pattern = "PH_", replacement = "")
 
@@ -153,6 +69,7 @@ names(all_pgk1) <- gsub(x = names(all_pgk1), pattern = "PH_", replacement = "")
 head(all_pgk1)
 head(all_his4)
 
+#Read coverage threshold cut-off
 pgk1_32 <- filter(all_pgk1, 
                   all_pgk1$IVT_preL > 32 | all_pgk1$IVT_preR > 32)
 

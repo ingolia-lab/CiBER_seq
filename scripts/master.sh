@@ -1,8 +1,8 @@
 #!/bin/bash -x
 
 #make fastq data directory
-#mkdir ~/CiBER_seq_package/
-#mkdir ~/CiBER_seq_package/all_raw_fastq/
+mkdir ~/CiBER_seq_package/
+mkdir ~/CiBER_seq_package/all_raw_fastq/
 
 DATADIR='~/CiBER_seq_package/all_raw_fastq/'
 

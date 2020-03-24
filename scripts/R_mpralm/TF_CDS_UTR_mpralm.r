@@ -59,30 +59,6 @@ library(mpra)
 library(dplyr)
 library(data.table)
 
-#Incorporate a lookup table strategy to assign long column names to easier variale names
-# old_utr_vars <- c("barcode", "IVT2_CUpostL_S19_L008_R1_001utr.count.txt", "IVT2_CUpreL_S18_L008_R1_001utr.count.txt",
-#                   "RNA_CU_PostL_S58_L007_R1_001utr.count.txt", "RNA_CU_PreL_S57_L007_R1_001utr.count.txt",
-#                   "IVT2_CUpostR_S106_L003_R1_001utr.count.txt", "IVT2_CUpreR_S105_L003_R1_001utr.count.txt",
-#                   "RNA_CU_PostR_S66_L008_R1_001utr.count.txt", "RNA_CU_PreR_S65_L008_R1_001utr.count.txt")
-# 
-# old_cds_vars <- c("barcode", "IVT2_CUpostL_S19_L008_R1_001cds.count.txt", "IVT2_CUpreL_S18_L008_R1_001cds.count.txt",
-#                   "RNA_CU_PostL_S58_L007_R1_001cds.count.txt", "RNA_CU_PreL_S57_L007_R1_001cds.count.txt",
-#                   "IVT2_CUpostR_S106_L003_R1_001cds.count.txt", "IVT2_CUpreR_S105_L003_R1_001cds.count.txt",
-#                   "RNA_CU_PostR_S66_L008_R1_001cds.count.txt", "RNA_CU_PreR_S65_L008_R1_001cds.count.txt")
-# 
-# newvars <- c("barcode", "IVT_postL", "IVT_preL",
-#              "RNA_postL", "RNA_preL",
-#              "IVT_postR", "IVT_preR",
-#              "RNA_postR", "RNA_preR")
-# 
-# lookup = data.frame(old_utr_vars, old_cds_vars, newvars)
-# 
-# names(TF_UTR) <- lookup[match(names(TF_UTR), lookup$old_utr_vars),"newvars"]
-# names(TF_CDS) <- lookup[match(names(TF_CDS), lookup$old_cds_vars),"newvars"]
-# 
-# head(TF_UTR)
-# head(TF_CDS)
-
 names(TF_UTR) <- gsub(x = names(TF_UTR), pattern = "utr.count.txt", replacement = "")
 
 names(TF_CDS) <- gsub(x = names(TF_CDS), pattern = "cds.count.txt", replacement = "")
