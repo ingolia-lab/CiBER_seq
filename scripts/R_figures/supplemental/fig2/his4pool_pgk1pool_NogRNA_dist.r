@@ -4,8 +4,8 @@ if (!requireNamespace("dplyr", quietly = TRUE))
   install.packages("dplyr")
 library(dplyr)
 
-mpralmpath <- "~/CiBER_seq_package/all_raw_fasta_gz/"
-GOpath <- "~/CiBER_seq_package/scripts/GO_analysis_files/GO_annotation_lists/"
+mpralmpath <- "~/CiBER_seq_package/all_raw_fastq/"
+GOpath <- "~/CiBER_github/CiBER_seq/scripts/GO_analysis_files/GO_annotation_lists/"
 
 pgk1_pooled <- read.delim(paste(mpralmpath, "HIS4_PGK1_pooled/pgk1_pooled_sum_mpralm", ".txt", sep=""),
                           stringsAsFactors=FALSE, header = TRUE)

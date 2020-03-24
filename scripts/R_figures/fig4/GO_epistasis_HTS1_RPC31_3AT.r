@@ -617,33 +617,3 @@ dev.off()
 a
 b
 c
-
-#temp <- merge(postvthrAT_sub, postvHTS1_sub, by="Guide")
-#temp <- filter(temp, temp$adj.P.Val < 0.05 | temp$HTS1_adj.P.Val < 0.05)
-#plot(-temp$logFC, temp$HTS1_logFC, pch=20, col="blue")
-
-#temp2 <- merge(postvthrAT_sub, postvRPC31_sub, by="Guide")
-#temp2 <- filter(temp2, temp2$adj.P.Val < 0.05 | temp2$RPC31_adj.P.Val < 0.05)
-#plot(-temp2$logFC, temp2$RPC31_logFC, pch=20, col="blue")
-#temp2$diff <- temp2$logFC + temp2$RPC31_logFC
-
-#_________________________________
-#filter HTS1 and RCP31 that block activation post_vs_HTS1post and post_vs_RPC31post
-HTS1_block <- all
-RPC31_block <- all
-
-#filter out simple activators seen in (LFC in HIS4 pre v post > 0.5)
-'%notin%' <- Negate('%in%')
-his4_pooled_act <- filter(his4_pooled, his4_pooled$adj.P.Val < 0.05 & his4_pooled$logFC < -0.5)
-HTS1_act_no_ind <- subset(all, (all$HTS1_Yorf1 %in% his4_pooled_act$Yorf1))
-HTS1_block <- subset(all, (all$HTS1_Yorf1 %notin% his4_pooled_act$Yorf1))
-
-#GO analysis on those that block activation
-GO_HTS1_block <- HTS1_block
-GO_HTS1_block <- filter(GO_HTS1_block, 
-                        GO_HTS1_block$HTS1_adj.P.Val < 0.05 & GO_HTS1_block$HTS1_logFC < -0.5)
-GO_HTS1_block <- GO_HTS1_block[!is.na(GO_HTS1_block[,4]),]
-write.table(as.factor(GO_HTS1_block$Yorf1), "~/GO_HTS1_block.txt", sep="\t", 
-            row.names = FALSE, col.names = FALSE)
-
-

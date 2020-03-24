@@ -1,5 +1,5 @@
 ## mpralm scoring results for P(HIS4)
-mpralmFile <- '/mnt/ingolialab/rmuller1/CiBER_seq_package/all_raw_fasta_gz/HIS4_PGK1_pooled/his4_pooled_sum_mpralm.txt'
+mpralmFile <- '/mnt/ingolialab/rmuller1/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_pooled/his4_pooled_sum_mpralm.txt'
 mpralmAll <- read.delim(mpralmFile, stringsAsFactors=FALSE, row.names=1)
 mpralm <- mpralmAll[,c("Guide", "logFC", "AveExpr", "P.Value", "adj.P.Val")]
 neg <- mpralm[grepl("No_gRNA", mpralm$Guide),]

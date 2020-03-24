@@ -4,8 +4,8 @@ if (!requireNamespace("dplyr", quietly = TRUE))
   install.packages("dplyr")
 library(dplyr)
 
-mpralmpath <- "~/CiBER_seq_package/all_raw_fasta_gz/"
-GOpath <- "~/CiBER_seq_package/scripts/GO_analysis_files/GO_annotation_lists/"
+mpralmpath <- "~/CiBER_seq_package/all_raw_fastq/"
+GOpath <- "~/CiBER_github/CiBER_seq/scripts/GO_analysis_files/GO_annotation_lists/"
 
 utr <- read.delim(paste(mpralmpath, "GCN4_CDS_UTR/utr_sum_mpralm", ".txt", sep=""),
                   stringsAsFactors=FALSE, header = TRUE)

@@ -1,4 +1,6 @@
-datadir="~/CiBER_seq_package/all_raw_fastq/bc_validation/"
+from os.path import expanduser
+home=expanduser("~")
+datadir=home+"/CiBER_seq_package/all_raw_fastq/bc_validation/"
 
 from Bio import SeqIO
 class FASTQtoBCcounts():

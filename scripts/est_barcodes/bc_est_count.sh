@@ -13,6 +13,7 @@ cutadapt --discard-untrimmed --minimum-length 25 --maximum-length 25 -m 10 -a GG
 cutadapt --discard-untrimmed --minimum-length 25 --maximum-length 25 -m 10 -a GGAGTTATCAACAGAGCGCGAGATCG \
 	-o ${GZDIR}/RNA_rep2.trimmed.fastq ${GZDIR}/RNA_rep2.fastq > ${GZDIR}/RNA_rep2.cutadapt.log
 
+pip install biopython
 python ${HOME}/CiBER_github/CiBER_seq/scripts/est_barcodes/tabulate_bc_est.py
 
 

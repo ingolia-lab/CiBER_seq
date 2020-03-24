@@ -9,7 +9,7 @@ par(mar=c(8,4,4,4)+.1)
 barplot(cds_tf, main="cds_tf qPCR", las = 2)
 dev.off()
 
-#re-normlaization
+#re-normalization
 cds_tf <- c(0.9999999984, 3.300711998, 3.761421187, 3.547691513, 
             1.462050936, 6.031665399, 5.243890226, 4.64003348)
 names(cds_tf) <- c("NUP133_un", "NUP145_un", "UBC9_un", "ULP1_un", 

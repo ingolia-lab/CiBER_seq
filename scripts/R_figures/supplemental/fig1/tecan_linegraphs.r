@@ -1,5 +1,5 @@
 #Line graphs of Tecan data
-est_growth <- read.csv("~/CiBER_seq_package/scripts/R_figures/supplemental/fig1/citrine_est_titration.csv",
+est_growth <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig1/citrine_est_titration.csv",
                 stringsAsFactors=FALSE, header = TRUE, sep = ",")
 
 est_growth$minint15 <- c(1:96)
@@ -65,7 +65,7 @@ title(main = "Estradiol Titration Time course")
 dev.off()
 
 #gRNA line plots_________________________________________________________________
-est_growth <- read.csv("~/CiBER_seq_package/scripts/R_figures/supplemental/fig1/tet_growth_pgal.csv",
+est_growth <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig1/tet_growth_pgal.csv",
                        stringsAsFactors=FALSE, header = TRUE, sep = ",")
 
 tet_growth_pgal <- est_growth
@@ -130,7 +130,7 @@ segments(tet_growth_pgal$hour, tet_growth_pgal$CitperOD_250 - tet_growth_pgal$ST
 title(main = "pGal gRNA tet Titration Time course")
 dev.off()
 
-est_growth <- read.csv("~/CiBER_seq_package/scripts/R_figures/supplemental/fig1/tet_growth_adh1.csv",
+est_growth <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig1/tet_growth_adh1.csv",
                        stringsAsFactors=FALSE, header = TRUE, sep = ",")
 
 tet_growth_padh1 <- est_growth

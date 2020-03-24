@@ -3,14 +3,20 @@
 mpralmpath <- "~/CiBER_seq_package/all_raw_fastq/"
 
 his4_pool_reads <- read.delim(paste(mpralmpath, 
-                                "HIS4_PGK1_pooled/more_seq/all_his4_moreseq_counts", 
+                                "HIS4_PGK1_pooled/all_his4_pooled_counts", 
                                 ".txt", sep=""),
                           stringsAsFactors=FALSE, header = TRUE)
 
 pgk1_pool_reads <- read.delim(paste(mpralmpath, 
-                                "HIS4_PGK1_pooled/more_seq/all_pgk1_moreseq_counts", 
+                                "HIS4_PGK1_pooled/all_pgk1_pooled_counts", 
                                 ".txt", sep=""),
                           stringsAsFactors=FALSE, header = TRUE)
+
+names(his4_pool_reads) <- gsub(x = names(his4_pool_reads), pattern = "his4.count.txt", replacement = "")
+names(his4_pool_reads) <- gsub(x = names(his4_pool_reads), pattern = "PH_", replacement = "")
+
+names(pgk1_pool_reads) <- gsub(x = names(pgk1_pool_reads), pattern = "pgk1.count.txt", replacement = "")
+names(pgk1_pool_reads) <- gsub(x = names(pgk1_pool_reads), pattern = "PH_", replacement = "")
 
 if (!requireNamespace("dplyr", quietly = TRUE))
   install.packages("dplyr")
@@ -25,15 +31,15 @@ if (!requireNamespace("png", quietly = TRUE))
 library(png)
 
 his4_pool_reads <- filter(his4_pool_reads, 
-                          his4_pool_reads$IVT_PreL_S50_L008_R1_001his4.count.txt > 32 & his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt > 32)
+                          his4_pool_reads$IVT_preL > 32 & his4_pool_reads$IVT_preR > 32)
 pgk1_pool_reads <- filter(pgk1_pool_reads, 
-                          pgk1_pool_reads$IVT_PreL_S50_L008_R1_001pgk1.count.txt > 32 & pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt > 32)
+                          pgk1_pool_reads$IVT_preL > 32 & pgk1_pool_reads$IVT_preR > 32)
 
 #his4 IVT pre replicates__________________________________________________
 pdf("his4_IVT_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(his4_pool_reads$IVT_PreL_S50_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$IVT_preL + 1), 
+     log10(his4_pool_reads$IVT_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -47,8 +53,8 @@ pointsfile <- "his4_IVT_pre_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(his4_pool_reads$IVT_PreL_S50_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PreR_S51_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$IVT_preL + 1), 
+     log10(his4_pool_reads$IVT_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -84,8 +90,8 @@ dev.off()
 #his4 IVT post replicates__________________________________________________
 pdf("his4_IVT_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(his4_pool_reads$IVT_PostL_S52_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PostR_S53_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$IVT_postL + 1), 
+     log10(his4_pool_reads$IVT_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -99,8 +105,8 @@ pointsfile <- "his4_IVT_post_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(his4_pool_reads$IVT_PostL_S52_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$IVT_PostR_S53_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$IVT_postL + 1), 
+     log10(his4_pool_reads$IVT_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -136,8 +142,8 @@ dev.off()
 #pgk1 IVT pre replicates__________________________________________________
 pdf("pgk1_IVT_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(pgk1_pool_reads$IVT_PreL_S50_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$IVT_preL + 1), 
+     log10(pgk1_pool_reads$IVT_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -151,8 +157,8 @@ pointsfile <- "pgk1_IVT_pre_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(pgk1_pool_reads$IVT_PreL_S50_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PreR_S51_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$IVT_preL + 1), 
+     log10(pgk1_pool_reads$IVT_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -189,8 +195,8 @@ dev.off()
 #pgk1 IVT post replicates__________________________________________________
 pdf("pgk1_IVT_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(pgk1_pool_reads$IVT_PostL_S52_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PostR_S53_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$IVT_postL + 1), 
+     log10(pgk1_pool_reads$IVT_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -204,8 +210,8 @@ pointsfile <- "pgk1_IVT_post_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(pgk1_pool_reads$IVT_PostL_S52_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$IVT_PostR_S53_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$IVT_postL + 1), 
+     log10(pgk1_pool_reads$IVT_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -241,8 +247,8 @@ dev.off()
 #his4 RNA pre replicates__________________________________________________
 pdf("his4_RNA_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(his4_pool_reads$RNA_PreL_S54_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PreR_S55_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$RNA_preL + 1), 
+     log10(his4_pool_reads$RNA_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -256,8 +262,8 @@ pointsfile <- "his4_RNA_pre_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(his4_pool_reads$RNA_PreL_S54_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PreR_S55_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$RNA_preL + 1), 
+     log10(his4_pool_reads$RNA_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -293,8 +299,8 @@ dev.off()
 #his4 RNA post replicates__________________________________________________
 pdf("his4_RNA_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(his4_pool_reads$RNA_PostL_S56_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PostR_S57_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$RNA_postL + 1), 
+     log10(his4_pool_reads$RNA_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -308,8 +314,8 @@ pointsfile <- "his4_RNA_post_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(his4_pool_reads$RNA_PostL_S56_L008_R1_001his4.count.txt + 1), 
-     log10(his4_pool_reads$RNA_PostR_S57_L008_R1_001his4.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(his4_pool_reads$RNA_postL + 1), 
+     log10(his4_pool_reads$RNA_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -345,8 +351,8 @@ dev.off()
 #pgk1 RNA pre replicates__________________________________________________
 pdf("pgk1_RNA_pre_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(pgk1_pool_reads$RNA_PreL_S54_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PreR_S55_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$RNA_preL + 1), 
+     log10(pgk1_pool_reads$RNA_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -360,8 +366,8 @@ pointsfile <- "pgk1_RNA_pre_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(pgk1_pool_reads$RNA_PreL_S54_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PreR_S55_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$RNA_preL + 1), 
+     log10(pgk1_pool_reads$RNA_preR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 
@@ -398,8 +404,8 @@ dev.off()
 #pgk1 RNA post replicates__________________________________________________
 pdf("pgk1_RNA_post_replicates.pdf", useDingbats=FALSE, width=5, height=5, colormodel="rgb")
 par(pty="s")
-plot(log10(pgk1_pool_reads$RNA_PostL_S56_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PostR_S57_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$RNA_postL + 1), 
+     log10(pgk1_pool_reads$RNA_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE, 
      type="n")
 ## Capture the plot window coordinates
@@ -413,8 +419,8 @@ pointsfile <- "pgk1_RNA_post_replicates.png"
 png(pointsfile, width=width, height=height, units="in", res=750, bg="transparent")
 par(mar=c(0,0,0,0))
 
-plot(log10(pgk1_pool_reads$RNA_PostL_S56_L008_R1_001pgk1.count.txt + 1), 
-     log10(pgk1_pool_reads$RNA_PostR_S57_L008_R1_001pgk1.count.txt + 1), pch=16, cex=0.5, 
+plot(log10(pgk1_pool_reads$RNA_postL + 1), 
+     log10(pgk1_pool_reads$RNA_postR + 1), pch=16, cex=0.5, 
      col = alpha("black", 0.2), axes = FALSE)
 dev.off()
 

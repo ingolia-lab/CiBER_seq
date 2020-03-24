@@ -185,3 +185,4 @@ head(pgk1_sum_mpralm)
 #saving mpralm analysis
 write.table(pgk1_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_3AT/pgk1_postv3AT_sum_mpralm.txt", sep="\t")
 write.table(his4_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/HIS4_PGK1_3AT/his4_postv3AT_sum_mpralm.txt", sep="\t")
+write.table(his4_sum_mpralm, "~/CiBER_seq_package/all_raw_fastq/epistasis_3AT_HTS1_RPC31/his4_postv3AT_sum_mpralm.txt", sep="\t")

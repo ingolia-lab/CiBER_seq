@@ -3,11 +3,11 @@ if (!requireNamespace("scales", quietly = TRUE))
   install.packages("scales")
 library(scales)
 
-bc1 <- read.csv("~/CiBER_seq_package/scripts/R_figures/supplemental/fig1/bcodes_bc1.csv",
+bc1 <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig1/bcodes_bc1.csv",
                        stringsAsFactors=FALSE, header = TRUE, sep = ",")
-bc2 <- read.csv("~/CiBER_seq_package/scripts/R_figures/supplemental/fig1/bcodes_bc2.csv",
+bc2 <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig1/bcodes_bc2.csv",
                 stringsAsFactors=FALSE, header = TRUE, sep = ",")
-bc3 <- read.csv("~/CiBER_seq_package/scripts/R_figures/supplemental/fig1/bcodes_bc3.csv",
+bc3 <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig1/bcodes_bc3.csv",
                 stringsAsFactors=FALSE, header = TRUE, sep = ",")
 
 bc1 <- filter(bc1, bc1$PE.Tx.Red.YG.A > 0)

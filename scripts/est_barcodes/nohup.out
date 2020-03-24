@@ -1,0 +1,42 @@
+Collecting biopython
+  Using cached https://files.pythonhosted.org/packages/ff/f4/0ce39bebcbb0ff619426f2bbe86e60bc549ace318c5a9113ae480ab2adc7/biopython-1.76.tar.gz
+Collecting numpy (from biopython)
+  Using cached https://files.pythonhosted.org/packages/3a/5f/47e578b3ae79e2624e205445ab77a1848acdaa2929a00eeef6b16eaaeb20/numpy-1.16.6-cp27-cp27mu-manylinux1_x86_64.whl
+Building wheels for collected packages: biopython
+  Running setup.py bdist_wheel for biopython: started
+  Running setup.py bdist_wheel for biopython: finished with status 'error'
+  Complete output from command /usr/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-76HQIg/biopython/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/tmpteU9xUpip-wheel- --python-tag cp27:
+  We need both setuptools AND wheel packages installed for bdist_wheel to work. Try running: pip install wheel
+  
+  ----------------------------------------
+  Failed building wheel for biopython
+  Running setup.py clean for biopython
+Failed to build biopython
+Installing collected packages: numpy, biopython
+  Running setup.py install for biopython: started
+    Running setup.py install for biopython: finished with status 'done'
+Successfully installed biopython-1.76 numpy-1.16.6
+('BC1%: ', 9.053497942386832)
+('BC2%: ', 14.40329218106996)
+('BC3%: ', 11.522633744855968)
+('BC4%: ', 12.345679012345679)
+('BC5%: ', 20.98765432098765)
+('BC6%: ', 29.629629629629626)
+('BC1%: ', 14.46280991735537)
+('BC2%: ', 11.983471074380166)
+('BC3%: ', 10.330578512396695)
+('BC4%: ', 11.983471074380166)
+('BC5%: ', 24.380165289256198)
+('BC6%: ', 26.446280991735538)
+('BC1%: ', 0.0)
+('BC2%: ', 12.396694214876034)
+('BC3%: ', 22.31404958677686)
+('BC4%: ', 34.29752066115703)
+('BC5%: ', 28.512396694214875)
+('BC6%: ', 0.4132231404958678)
+('BC1%: ', 0.0)
+('BC2%: ', 17.355371900826448)
+('BC3%: ', 16.528925619834713)
+('BC4%: ', 32.231404958677686)
+('BC5%: ', 31.818181818181817)
+('BC6%: ', 0.8264462809917356)

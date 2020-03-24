@@ -2,9 +2,9 @@
 
 library(dplyr)
 
-dapi <- read.csv("~/CiBER_seq_package/scripts/R_figures/fig5/merged_dapi.csv", 
+dapi <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig5/merged_dapi.csv", 
                  header=TRUE)
-gcn4 <- read.csv("~/CiBER_seq_package/scripts/R_figures/fig5/merged_gcn4.csv", 
+gcn4 <- read.csv("~/CiBER_github/CiBER_seq/scripts/R_figures/supplemental/fig5/merged_gcn4.csv", 
                  header=TRUE)
 
 dapi_final <- filter(dapi, dapi$Area != "Area")
