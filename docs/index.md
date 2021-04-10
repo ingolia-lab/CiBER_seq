@@ -21,7 +21,9 @@ into RNA expression.
 <img src="images/ciber.gif">
 
 This site is a resource for CiBER-Seq, based on our work in [Muller et
-al., 2020](FORTHCOMING). It builds on our [genome-wide CRISPRi
+al., _Science_ 2020](https://doi.org/10.1126/science.abb9662). It
+builds on our [genome-wide CRISPRi
 library](https://ingolia-lab.github.io/yeast-crispri/) described in
-[McGlincy et al., 2020](https://doi.org/10.1101/2020.03.11.988105).
+[McGlincy et al., _BMC Genomics_
+2021](https://doi.org/10.1186/s12864-021-07518-0)
 
